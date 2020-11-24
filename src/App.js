@@ -1,19 +1,28 @@
 import './style/App.scss';
-import Header from './components/Header';
-import Authorization from './components/Autorization';
+import { BrowserRouter, Route } from 'react-router-dom';
+
+import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Autorization/Login';
+import CheckIn from './components/Autorization/CheckIn';
+
+ 
 
 function App() {
   return (
-    <div className="wrapper">
-      <div className="container">
-        <div className="header">
-          <Header />
-        </div>
-        <div className="authorization">
-          <Authorization />
+    <BrowserRouter>
+      <div className="wrapper">
+        <div className="container">
+          <div className="header">
+            <HeaderContainer />
+          </div>
+          <div className="authorization">
+            {/* <Route path="/authorization" render={() => <Login />} /> */}
+            <Route path="/checkin" render={() => <CheckIn />} />
+          </div>
         </div>
       </div>
-    </div>
+
+    </BrowserRouter>
   );
 }
 

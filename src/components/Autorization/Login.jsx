@@ -1,19 +1,21 @@
 import React from 'react';
-import FormAuthorization from './FormAuthorization';
+import LoginForm from './LoginForm';
 
 
-const Authorization = (props) => {
-
+const Login = (props) => {
+    const onSubmit = (formData) => {
+        console.log("formData");
+    }
 
     return (
         <div className="authorization-container">
             <div className="authorization-form__title">
                 Покер
             </div>
-            <FormAuthorization />   
+            <LoginForm onSubmit={onSubmit} />   
         </div>
     )
 }
 
 
-export default Authorization;
+export default Login;
