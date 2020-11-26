@@ -12,16 +12,11 @@ function App() {
     <BrowserRouter>
       <div className="wrapper">
         <div className="container">
-          <div className="header">
             <HeaderContainer />
-          </div>
-          <div className="authorization">
-            {/* <Route path="/authorization" render={() => <Login />} /> */}
+            <Route path="/login" render={() => <Login />} />
             <Route path="/checkin" render={() => <CheckIn />} />
-          </div>
         </div>
       </div>
-
     </BrowserRouter>
   );
 }
