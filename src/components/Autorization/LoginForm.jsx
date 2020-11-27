@@ -14,7 +14,7 @@ let LoginForm = (props) => {
                         <Field placeholder={"Login"} name={"login"} component={"input"} />
                     </div>
                     <div className="form-login-container__password form-login-container__input">
-                        <Field placeholder={"Password"} name={"password"} component={"input"} />
+                        <Field placeholder={"Password"} name={"password"} type={'password'} component={"input"} />
                     </div>
                     <div className="form-login-container__button">
                         <button>Войти</button>
