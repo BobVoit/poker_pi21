@@ -8,8 +8,8 @@ export const authAPI = {
     login(login, password) {
         return axios.get('http://localhost/api/index.php?method=login&login='+login+'&password='+password);
     },
-    logout() {
-        return axios.get('url');
+    logout(token) {
+        return axios.get('http://localhost/api/index.php?method=logout&token=' + token);
     },
     getUserByToken(token) {
         return axios.get('http://localhost/api/index.php?method=getuserbytoken&token='+token);

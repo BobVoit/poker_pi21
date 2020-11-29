@@ -1,9 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+import { logout } from '../../redux/authReducer';
 
-class Header extends React.Component  {
-    
+
+class Header extends React.Component {
+    logout = () => {
+        this.props.logout(this.props.token);
+    }
+
+
     render() {
         return (
             <header className="header-container">
@@ -12,14 +19,15 @@ class Header extends React.Component  {
                 : null
                 }
                 <div>
-    
+
                 </div>
                 <nav>
-                   { !this.props.isAuth &&
-                        <div>
+                    { !this.props.isAuth 
+                        ? <div>
                             <NavLink to="/checkin">Регистрация</NavLink>
                             <NavLink to="/login">Войти</NavLink>
                         </div>
+                        : <button onClick={this.logout} >Выйти</button>
                     }
                 </nav>
             </header>
@@ -27,4 +35,13 @@ class Header extends React.Component  {
     }
 }
 
-export default Header;
+
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth,
+    login: state.auth.login,
+    token: state.auth.token
+})
+
+export default connect(mapStateToProps, {
+    logout
+})(Header);
