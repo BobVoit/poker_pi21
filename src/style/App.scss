@@ -1,0 +1,261 @@
+@import "./null.scss";
+@import "./fonts.scss";
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background: url("../images/back.jpg") no-repeat;
+  .container {
+      
+  }
+  .header-container {
+    width: 100%;
+    height: 5vh;
+    background: rgba(255, 255, 255, 0.7);
+    opacity: 70%;
+    .header-container__user-login {
+      color: #151177;
+      font-size: 30px;
+      font-weight: 700;
+    }
+  }
+}
+
+
+
+.form-checkin-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  .form-checkin-container__title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    font-size: 40px;
+    margin: 30px;
+  }
+
+  .form-checkin-container__form {
+    margin: 30px;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 24px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+  
+  .form-checkin-container__input {
+    height: 50px;
+    width: 300px;
+    border: 4px solid #1F4D26;
+    background-color: #c4c4c4;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+
+    input {
+      width: 100%;
+      font-size: 30px;
+      background-color: #c4c4c4;
+      outline: none;
+      border: none;
+      margin: 2px;
+      font-size: 18px;
+    }
+  }
+
+  .form-checkin-container__button {
+    
+    button {
+      height: 60px;
+      width: 300px;
+      color: #fff;
+      font-size: 24pt;
+      border-radius: 15px;
+      opacity: 100%;
+      background: #1F4D26;
+      &:hover {
+        border: 3px solid #fff;
+      }
+    }
+  }
+}
+
+
+
+
+.form-login-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  .form-login-container__title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    font-size: 40px;
+    margin: 30px;
+  }
+
+  .form-login-container__form {
+    margin: 30px;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 24px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    
+  .form-login-container__input {
+    height: 50px;
+    width: 300px;
+    border: 4px solid #1F4D26;
+    background-color: #c4c4c4;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+
+    input {
+      width: 100%;
+      font-size: 30px;
+      background-color: #c4c4c4;
+      outline: none;
+      border: none;
+      margin: 2px;
+      font-size: 18px;
+    }
+  }
+
+  .form-login-container__button {
+    
+    button {
+      height: 60px;
+      width: 300px;
+      color: #fff;
+      font-size: 24pt;
+      border-radius: 15px;
+      opacity: 100%;
+      background: #1F4D26;
+      &:hover {
+        border: 3px solid #fff;
+      }
+    }
+  }
+
+  .form-login-container__link {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    a {
+      padding: 10px 45px;
+      font-size: 20px;
+      background: #58A73C;
+      border-radius: 15px;    
+      font-family: 'Tajawal', sans-serif;
+      color: #000;
+      font-weight: 700;
+    }
+  }
+  }
+}
+
+
+
+.profile-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .profile-container_window {
+    width: 60vw;
+    height: 60vh;
+    background: rgba(255, 255, 255, 0.7);
+    margin-top: 15vh;
+    border-radius: 15px;
+
+    display: flex;
+
+
+    .profile-container_avatar {
+
+      .profile-container_nickname{
+      
+        font-size: 2.5vw;
+        margin: 0 0 0 2vw;
+        padding-top: 14vh;
+    } 
+      .profile-container_img {
+        margin: 0 2vw 5vh 2vw;
+        padding-top: 2vh;
+        
+        img {
+          width: 10vw;
+        }
+      }
+      
+    
+
+    }
+
+    
+
+    
+    
+
+    .profile-container_stats {
+      width: 100%;
+      height: 100%;
+      border-left: 2px solid #000;
+      font-size: 1.5vw;
+      padding-left: 1vw;
+      
+      
+
+
+      .profile-container_stats_header{
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2vw;
+      font-size: 4vw;
+    
+      }
+      .profile-container_stats_money{
+        font-size: 1.5vw;
+        display: flex;
+        flex-flow: row nowrap;
+        padding-left: 0.5vw;
+        
+        img{
+          width:2.5vw;
+          padding-right: 1vw;
+          
+        }
+      }
+    }
+
+  } 
+}
