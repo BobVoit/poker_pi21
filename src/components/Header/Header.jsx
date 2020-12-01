@@ -23,9 +23,17 @@ class Header extends React.Component {
                 </div>
                 <nav>
                     { !this.props.isAuth 
-                        ? <div>
-                            <NavLink to="/checkin">Регистрация</NavLink>
-                            <NavLink to="/login">Войти</NavLink>
+                        ? <div className="header-container__login">
+                            <button className="header__btn-check-in">
+                                <NavLink to="/checkin">Регистрация</NavLink>
+                             </button> 
+                             <button className="header__btn-login">
+                                <NavLink to="/login">Войти</NavLink>
+                            </button>  
+                            <button className="info__btn ml-auto">
+                              
+                            </button> 
+                            
                         </div>
                         : <button onClick={this.logout} >Выйти</button>
                     }
