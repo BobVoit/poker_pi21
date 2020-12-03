@@ -1,9 +1,9 @@
 import * as axios from "axios";
 
-const instance = axios.create({
-    withCredentials: true,
-    baseURL: 'http://poker/api/index.php?',
-})
+// const instance = axios.create({
+//     withCredentials: true,
+//     baseURL: 'http://poker/api/index.php?',
+// })
 
 export const authAPI = {
     checkIn(login, password, nickname) {
@@ -43,18 +43,21 @@ export const authAPI = {
 
 
 export const tablesAPI = {
-    createTable(token, name, quantPlayer = null, rates = null, password = null) {
-        return axios.post({
+    // токен игрока
+    // id стола
+    // rates - ставки
+    createTable(token, name, quantPlayer = '', rates = '', password = '') {
+        return axios({
             method: 'POST',
             url: 'http://poker/api/index.php?',
             params: {
                 method: 'createtable',
                 token, name, quantPlayer, rates, password
             }
-        })
+        }, {withCredentials: true})
     },
     deleteTableById(id) {
-        return axios.post({
+        return axios({
             method: 'POST',
             url: 'http://poker/api/index.php?',
             params: {
@@ -64,7 +67,8 @@ export const tablesAPI = {
         })
     },
     connectToTable(token, id) {
-        return axios.post({
+    // id стола
+        return axios({
             method: 'POST',
             url: 'http://poker/api/index.php?',
             params: {
@@ -74,7 +78,7 @@ export const tablesAPI = {
         })
     },
     disconnectFromTable(token, id) {
-        return axios.post({
+        return axios({
             method: 'POST',
             url: 'http://poker/api/index.php?',
             params: {

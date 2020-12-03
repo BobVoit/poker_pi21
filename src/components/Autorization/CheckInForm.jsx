@@ -12,9 +12,9 @@ class CheckInForm extends React.Component {
         this.setState({ isCheckIn: false });
     }
 
-    setIsCheckIn = () => {
-        this.setState({ isCheckIn: !this.state.isCheckIn });
-    }
+    // setIsCheckIn = () => {
+    //     this.setState({ isCheckIn: !this.state.isCheckIn });
+    // }
 
     render() {
         if (this.state.isCheckIn) {
@@ -41,7 +41,7 @@ class CheckInForm extends React.Component {
                             name={"nickname"} placeholder={"Nickname"} component={'input'}/>    
                         </div>
                         <div className="form-checkin-container__button">
-                            <button onClick={this.setIsCheckIn}>Зарегистрироваться</button>
+                            <button>Зарегистрироваться</button>
                         </div>
                     </form>
                 </div>

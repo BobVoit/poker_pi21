@@ -7,12 +7,14 @@ const SET_USER_DATA = 'SET_USER_DATA';
 let initialState = {
     login: null,
     password: null,
-    nickname: "null",
+    nickname: null,
     money: null,
     token: null,
     isAuth: false,
     error: null
 }
+
+
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -41,14 +43,15 @@ const authReducer = (state = initialState, action) => {
 
 export const setToken = (token) => ({ type: SET_TOKEN, token })
 
-export const setUserData = (login, password, nickname, money, token, isAuth) => ({
+export const setUserData = (login, password, nickname, money, token, bank, isAuth) => ({
     type: SET_USER_DATA,
     login,
     password,
     nickname,
     money,
     token,
-    isAuth
+    isAuth, 
+    bank
 })
 
 
@@ -66,7 +69,6 @@ export const checkIn = (login, password, nickname) => (dispatch) => {
 export const login = (login, password) => (dispatch) => {
     authAPI.login(login, password)
         .then((response) => {
-            console.log(response);
             if (response.data.result === 'ok') {
                 dispatch(getUserByToken(response.data.data));
             }
@@ -79,10 +81,9 @@ export const login = (login, password) => (dispatch) => {
 export const getUserByToken = (token) => (dispatch) => {
     authAPI.getUserByToken(token)
         .then(response => {
-            console.log(response);
             let data = response.data.data;
             if (response.data.result === 'ok') {
-                dispatch(setUserData(data.login, data.password, data.nickname, data.money, data.token, true));
+                dispatch(setUserData(data.login, data.password, data.nickname, data.money, data.token, data.bank, true));
             }
         })
         .catch(error => {
@@ -92,7 +93,6 @@ export const getUserByToken = (token) => (dispatch) => {
 
 export const logout = (token) => (dispatch) => {
     authAPI.logout(token).then(response => {
-        console.log(response);
         if (response.data.result === "ok" && response.data.data) {
             dispatch(setUserData(null, null, null, null, null, false))
         }

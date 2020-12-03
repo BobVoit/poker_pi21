@@ -1,11 +1,10 @@
-import { authAPI } from '../api/api';
+import { tablesAPI } from '../api/api';
 
 const SET_TABLE = 'SET_TABLE';
 
 
 let initialState = {
-    tableToken: null,
-    tableName: null,
+    tables: [],
 }
 
 const tablesReducer = (state = initialState, action) => {
@@ -13,8 +12,12 @@ const tablesReducer = (state = initialState, action) => {
         case SET_TABLE: {
             return {
                 ...state,
-                tableToken: action.token,
-                tableId: action.name
+                tables: [...state.tables, {
+                    name: action.name, 
+                    quantPlayer: action.quantPlayer,
+                    rates: action.rates,
+                    password: action.password,
+                }]
             }
         } 
         default: 
@@ -26,6 +29,21 @@ const tablesReducer = (state = initialState, action) => {
 export const setTable = (tableToken, tableName) => ({ type: SET_TABLE, tableToken, tableName });
 
 
+export const createTable = (token, name, quantPlayer = null, rates = null, password = null) => (dispatch) => {
+    tablesAPI.createTable(token, name, quantPlayer, rates, password)
+        .then((response) => {
+            console.log(response);
+            // if (response.data.result === 'ok') {
+            // }
+        })
+}
+
+export const connectToTable = (token, id) => (dispatch) => {
+    tablesAPI.connectToTable(token, id)
+        .then(response => {
+            console.log(response);
+        })
+}
 
 
 export default tablesReducer;
