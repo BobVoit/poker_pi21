@@ -1,0 +1,17 @@
+@import "./null.css";
+@import "./fonts.css";
+@import "./login.css";
+@import "./checkIn.css";
+@import "./header.css";
+@import "./profile.css";
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background: url("../images/back.jpg") no-repeat;
+}
+
+.container {
+
+}

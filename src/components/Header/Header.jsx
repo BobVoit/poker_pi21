@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { logout } from '../../redux/authReducer';
+import HeaderInfo from './HeaderInfo';
+import Navbar from './Navbar';
 
 
 class Header extends React.Component {
+
     logout = () => {
         this.props.logout(this.props.token);
     }
-
 
     render() {
         return (
@@ -19,16 +21,26 @@ class Header extends React.Component {
                 : null
                 }
                 <div>
-
-                </div>
-                <nav>
-                    { !this.props.isAuth 
-                        ? <div>
+                { !this.props.isAuth 
+                    ? <div className="header-container__login">
+                        <button className="header__btn-check-in">
                             <NavLink to="/checkin">Регистрация</NavLink>
+                            </button> 
+                            <button className="header__btn-login">
                             <NavLink to="/login">Войти</NavLink>
-                        </div>
-                        : <button onClick={this.logout} >Выйти</button>
-                    }
+                        </button>  
+                        <button className="info__btn ml-auto">
+                            
+                        </button> 
+                        
+                    </div>
+                    : <div>
+                        <button onClick={this.logout}>Выйти</button>
+                    </div>
+                }
+                </div>
+                <nav className="navbar">
+                    <NavLink to="/tables">Столы</NavLink>
                 </nav>
             </header>
         )

@@ -1,0 +1,146 @@
+.profile-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    .profile-container_window {
+      width: 60vw;
+      height: 60vh;
+      background: rgba(255, 255, 255, 0.7);
+      margin-top: 15.5vh;
+      border-radius: 15px;
+  
+      display: flex;
+  
+  
+      .profile-container_avatar {
+
+
+        .profile-container__money {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            margin: 0 0 0 1.5vw;
+
+            .profile-container__coin-img {
+
+
+              img {
+                  width: 2.5vw;
+              }
+            }
+
+            .profile-container__money-value {
+                font-size: 1.5vw;
+                margin-left: 0.5vw;
+            }
+        }
+
+  
+        .profile-container_nickname{
+        
+          font-size: 2.5vw;
+          margin: 0 0 0 2vw;
+          padding-top: 11.5vh;
+
+        
+        } 
+        .profile-container_img {
+          margin: 0 2vw 5vh 2vw;
+          padding-top: 2vh;
+          
+          img {
+            width: 10vw;
+          }
+        }
+        
+      
+  
+      }
+
+
+      .profile-container_stats {
+        width: 100%;
+        height: 100%;
+        border-left: 2px solid #000;
+        font-size: 3.5vh;
+        margin-top: 0.5vh;
+        padding-left: 1vw;
+        
+  
+  
+        .profile-container_stats_header{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5vh;
+        font-size: 8vh;
+        padding-right: 1vw;
+        }
+        
+        .profile-container_stats_win{
+          display: flex;
+          flex-flow: row nowrap;
+          padding-left: 0.5vw;
+          padding-bottom: 2vh;
+          img{
+            width: 2.5vw;
+            padding-right: 1vw;
+            
+          }
+  
+        }
+        .profile-container_stats_loss{
+          display: flex;
+          flex-flow: row nowrap;
+          padding-left: 0.5vw;
+          padding-bottom: 2vh;
+  
+          img{
+            width:2.5vw;
+            padding-right: 1vw;
+            
+          }
+        }
+        .profile-container_stats_biggest_win{
+          display: flex;
+          flex-flow: row nowrap;
+          padding-left: 0.5vw;
+          padding-bottom: 2vh;
+          
+          img{
+            width:2.5vw;
+            padding-right: 1vw;
+            
+          }
+        }
+        .profile-container_stats_biggest_loss{
+          display: flex;
+          flex-flow: row nowrap;
+          padding-left: 0.5vw;
+          padding-bottom: 2vh;
+  
+          img{
+            width:2.5vw;
+            padding-right: 1vw;
+            
+          }
+        }
+        .profile-container_stats_date_registration{
+          display: flex;
+          flex-flow: row nowrap;
+          padding-left: 0.5vw;
+          padding-bottom: 2vh;
+          img{
+            width:2.5vw;
+            padding-right: 1vw;
+            
+          }
+        }
+  
+  
+      }
+  
+    } 
+}
