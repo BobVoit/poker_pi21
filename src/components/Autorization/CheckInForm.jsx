@@ -1,25 +1,18 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
+import { required, maxLengthCreator, minLengthCreator } from '../../utils/validators/validators';
+import { Input } from '../common/FormsControls/FormsControls';
 
+const maxLengthLogin30 = maxLengthCreator(30);
+const minLengthLogin3 = minLengthCreator(3);
+const minLengthPassword5 = minLengthCreator(5);
+const minLengthNickname3 = minLengthCreator(3);
 
 class CheckInForm extends React.Component {
-    state = {
-        isCheckIn: false
-    }
-
-    componentDidMount() {
-        this.setState({ isCheckIn: false });
-    }
-
-    // setIsCheckIn = () => {
-    //     this.setState({ isCheckIn: !this.state.isCheckIn });
-    // }
 
     render() {
-        if (this.state.isCheckIn) {
-            return <Redirect to={'login'} />
-        }
+        
 
         return (
             <div className="form-checkin-container">
@@ -28,17 +21,17 @@ class CheckInForm extends React.Component {
                 </div>
                 <div className="form-checkin-container__form">
                     <form onSubmit={this.props.handleSubmit} >
-                        <div className="form-checkin-container__login form-checkin-container__input">
-                            <Field 
-                            placeholder={"Login"} name={"login"} component={'input'} />
+                        <div className="form-checkin-container__input">
+                            <Field validate={[required, maxLengthLogin30, minLengthLogin3]}
+                            placeholder={"Login"} name={"login"} component={Input} />
                         </div>
-                        <div className="form-checkin-container__password form-checkin-container__input">
-                            <Field  
-                            type={"Password"} placeholder={"password"} name={"password"} component={'input'} />
+                        <div className="form-checkin-container__input">
+                            <Field validate={[required, minLengthPassword5]}
+                            type={"Password"} placeholder={"password"} name={"password"} component={Input} />
                         </div>
-                        <div className="form-checkin-container__nickname form-checkin-container__input">
-                            <Field 
-                            name={"nickname"} placeholder={"Nickname"} component={'input'}/>    
+                        <div className="form-checkin-container__input">
+                            <Field validate={[required, minLengthNickname3]}
+                            name={"nickname"} placeholder={"Nickname"} component={Input}/>    
                         </div>
                         <div className="form-checkin-container__button">
                             <button>Зарегистрироваться</button>

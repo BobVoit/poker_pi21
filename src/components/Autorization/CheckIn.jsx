@@ -1,17 +1,19 @@
 import React from 'react';
-import CheckInForm from './CheckInForm';
-import { checkIn } from '../../redux/authReducer';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+import CheckInForm from './CheckInForm';
+import { checkIn, setRegistration } from '../../redux/authReducer';
 
 const CheckIn = (props) => {
     const onSubmit = (formData) => {
         props.checkIn(formData.login, formData.password, formData.nickname)
     }
 
-    if (props.isAuth) {
-        return <Redirect to="/" />
+    if (props.isRegistration) {
+        console.log('5656');
+        props.setRegistration(false);
+        return <Redirect to="/login" />
     }
 
     return (
@@ -23,9 +25,10 @@ const CheckIn = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    isRegistration: state.auth.isRegistration
 })
 
 export default connect(mapStateToProps, {
-    checkIn
+    checkIn, setRegistration
 })(CheckIn);

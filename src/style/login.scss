@@ -30,21 +30,24 @@
   
       
     .form-login-container__input {
-      height: 50px;
-      width: 300px;
-      border: 4px solid #1F4D26;
-      background-color: #c4c4c4;
-      border-radius: 10px;
+      // border: 4px solid #1F4D26;
+      // background-color: #c4c4c4;
+      // border-radius: 10px;
+      width: 100%;
       display: flex;
       justify-content: flex-start;
+      align-items: center;
       margin-bottom: 20px;
   
       input {
-        width: 100%;
+        height: 50px;
+        width: 300px;
         font-size: 30px;
         background-color: #c4c4c4;
+        border: 4px solid #1F4D26;
+        background-color: #c4c4c4;
+        border-radius: 10px;
         outline: none;
-        border: none;
         margin: 2px;
         font-size: 18px;
       }
@@ -52,10 +55,11 @@
   
 
     .form-login-container__button {
-      
+      display: flex;
+      justify-content: center;
 
       button {
-        height: 60px;
+        height: 50px;
         width: 300px;
         color: #fff;
         font-size: 24pt;

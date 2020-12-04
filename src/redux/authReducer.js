@@ -3,6 +3,7 @@ import { authAPI } from '../api/api';
 
 const SET_TOKEN = 'SET_TOKEN';
 const SET_USER_DATA = 'SET_USER_DATA';
+const SET_REGISTRATION = 'SET_REGISTRATION';
 
 let initialState = {
     login: null,
@@ -11,7 +12,8 @@ let initialState = {
     money: null,
     token: null,
     isAuth: false,
-    error: null
+    error: null,
+    isRegistration: false,
 }
 
 
@@ -35,6 +37,12 @@ const authReducer = (state = initialState, action) => {
                 isAuth: action.isAuth,
             }
         }
+        case SET_REGISTRATION: {
+            return {
+                ...state,
+                isRegistration: action.isRegistration
+            }
+        }
         default: 
             return state;
     }
@@ -42,6 +50,8 @@ const authReducer = (state = initialState, action) => {
 
 
 export const setToken = (token) => ({ type: SET_TOKEN, token })
+
+export const setRegistration = (isRegistration) => ({ type: SET_REGISTRATION, isRegistration }); 
 
 export const setUserData = (login, password, nickname, money, token, bank, isAuth) => ({
     type: SET_USER_DATA,
@@ -57,8 +67,8 @@ export const setUserData = (login, password, nickname, money, token, bank, isAut
 
 export const checkIn = (login, password, nickname) => (dispatch) => {
     authAPI.checkIn(login, password, nickname).then((response) => {
-        if (response.data.result === 'ok') {
-            // написать логику
+        if (response.data.result === 'ok' && response.data.data === true) {
+            dispatch(setRegistration(true));
         }
     })
     .catch((error) => {

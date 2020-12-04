@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+
 import TableItem from './TableItem';
 import { createTable, connectToTable } from '../../redux/tablesReducer';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
 
 
@@ -56,7 +59,7 @@ const mapStateToProps = (state) => ({
 
 })
 
-export default connect(mapStateToProps, {
+export default compose(connect(mapStateToProps, {
     createTable,
     connectToTable
-})(Tables);
+}), withAuthRedirect) (Tables);

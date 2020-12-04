@@ -1,0 +1,22 @@
+.form-controls {
+
+}
+
+.form-controls__error {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+    input {
+        width: 200px;
+        border: 2px solid #ff0000;
+    }
+
+    span {
+        font-size: 13px;
+        color: #ff0000;
+    }
+}
+
+.form-controls input {
+}
