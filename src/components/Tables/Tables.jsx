@@ -26,9 +26,9 @@ class Tables extends React.Component {
 
     render() {
         console.log(this.props);
+        if (this.props.isFetching) return <Preloader />;
         return (
             <>
-            { this.props.isFetching ? <Preloader /> : null }
             <div className="tables-container">
                <button onClick={this.createTable} className="create_tables_but">Создать стол</button>
                 <div className="tables-container_window">

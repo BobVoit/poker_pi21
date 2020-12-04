@@ -7,16 +7,16 @@ const TableItem = (props) => {
     return (
         <div className="tables-container_create">
             <div className="tables-container_create_id">
-                {props.table.table.id}
+                {props.table.id}
             </div>
             <div className="tables-container_create_name">
-                {props.table.table.name}
+                {props.table.name}
             </div>
             <div className="tables-container_create_players">
-                {props.table.table.quantity_players}
+                {props.table.quantity_players}
             </div>
             <div className="tables-container_create_bets">
-                {props.table.table.rates}
+                {props.table.rates}
             </div>
             <div className="tables-container_create_password">
                 Закрытый
