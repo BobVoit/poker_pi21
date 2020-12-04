@@ -1,9 +1,13 @@
 import * as axios from "axios";
 
-// const instance = axios.create({
-//     withCredentials: true,
-//     baseURL: 'http://poker/api/index.php?',
-// })
+const instance = axios.create({
+    withCredentials: true,
+    // baseURL: 'http://poker/api/index.php?',
+    headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers" : "*"
+    }
+})
 
 export const authAPI = {
     checkIn(login, password, nickname) {
@@ -88,13 +92,19 @@ export const tablesAPI = {
         })
     },
     getTallTables() {
-        return axios.get('http://localhost/api/index.php?method=getalltables');
+        return axios({
+            method: 'GET',
+            url: 'http://poker/api/index.php?',
+            params: {
+                method: 'getalltables'
+            }
+        }, {withCredentials: true});
     },
     getTableById(id) {
         return axios.get('http://localhost/api/index.php?method=gettablebyid&id=' + id);
     },
     getQuantPlayersOnTable(id) {
         return axios.get('http://localhost/api/index.php?method=getquantplayersontable&id=' + id);
-    }
+    },
 }
 

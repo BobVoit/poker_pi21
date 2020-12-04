@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import TableItem from './TableItem';
-import { createTable, connectToTable } from '../../redux/tablesReducer';
+import { createTable, connectToTable, getTallTables, setisFetching } from '../../redux/tablesReducer';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import Preloader from '../common/Preloader/Preloader';
 
 
 
 class Tables extends React.Component {
+
+    componentDidMount() {
+        this.props.getTallTables();
+    }
 
     createTable = () => {
         this.props.createTable(this.props.token, "Тест", 3, 1000, 1232423);
@@ -20,8 +25,10 @@ class Tables extends React.Component {
     
 
     render() {
-        
+        console.log(this.props);
         return (
+            <>
+            { this.props.isFetching ? <Preloader /> : null }
             <div className="tables-container">
                <button onClick={this.createTable} className="create_tables_but">Создать стол</button>
                 <div className="tables-container_window">
@@ -44,22 +51,25 @@ class Tables extends React.Component {
                         </div>
                     </div>
                     <div className="tables-container_main">
-                       <TableItem /> 
+                        {this.props.tables.map(table => <TableItem table={table} /> )}
                     </div>    
 
                 </div>
             
             </div>
+            </>
         )
     }
 }
 
 const mapStateToProps = (state) => ({
     token: state.auth.token,
-
+    tables: state.tables.tables,
+    isFetching: state.tables.isFetching
 })
 
 export default compose(connect(mapStateToProps, {
     createTable,
-    connectToTable
+    connectToTable,
+    getTallTables
 }), withAuthRedirect) (Tables);

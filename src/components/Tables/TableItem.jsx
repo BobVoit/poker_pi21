@@ -3,20 +3,20 @@ import React from 'react';
 
 
 const TableItem = (props) => {
-
+    console.log(props);
     return (
         <div className="tables-container_create">
             <div className="tables-container_create_id">
-                    1
+                {props.table.table.id}
             </div>
             <div className="tables-container_create_name">
-                Гении покера
+                {props.table.table.name}
             </div>
             <div className="tables-container_create_players">
-                0/6
+                {props.table.table.quantity_players}
             </div>
             <div className="tables-container_create_bets">
-                5000
+                {props.table.table.rates}
             </div>
             <div className="tables-container_create_password">
                 Закрытый

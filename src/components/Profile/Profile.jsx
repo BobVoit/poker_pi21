@@ -14,6 +14,7 @@ import coin from '../../images/money.png';
 
 const Profile = (props) => {
     
+    
     return (
         <div className="profile-container">
         <div className="profile-container_window">
