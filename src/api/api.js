@@ -1,13 +1,13 @@
 import * as axios from "axios";
 
-const instance = axios.create({
-    withCredentials: true,
-    // baseURL: 'http://poker/api/index.php?',
-    headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers" : "*"
-    }
-})
+// const instance = axios.create({
+//     withCredentials: true,
+//     baseURL: 'http://poker/api/index.php?',
+//     headers: {
+//         "Access-Control-Allow-Origin": "*",
+//         "Access-Control-Allow-Headers" : "*",
+//     }
+// })
 
 export const authAPI = {
     checkIn(login, password, nickname) {

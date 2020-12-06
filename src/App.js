@@ -6,7 +6,6 @@ import Login from './components/Autorization/Login';
 import CheckIn from './components/Autorization/CheckIn';
 import Profile from './components/Profile/Profile';
 import Tables from './components/Tables/Tables';
-
  
 
 function App() {

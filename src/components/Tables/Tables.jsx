@@ -30,28 +30,35 @@ class Tables extends React.Component {
         return (
             <>
             <div className="tables-container">
-               <button onClick={this.createTable} className="create_tables_but">Создать стол</button>
+                <div className="tables-container_but">
+                    <button onClick={this.createTable}>Создать стол</button>
+                </div>
                 <div className="tables-container_window">
                     <div className="tables-container_header">
-                        <div className="tables-container_header_id">
-                            <h3>№Стола</h3>
+
+                        <div className="tables-container_header_id tables-container_header_items">
+                            №Стола
                         </div>
-                        <div className="tables-container_header_name">
-                            <h3>Название стола</h3>
+
+                        <div className="tables-container_header_name tables-container_header_items">
+                            Название стола
                         </div>
-                        <div className="tables-container_header_players">
-                            <h3>Игроков</h3>
+
+                        <div className="tables-container_header_players tables-container_header_items">
+                            Игроков
                         </div>
                         
-                        <div className="tables-container_header_bets">
-                            <h3>Фишки</h3>
+                        <div className="tables-container_header_bets tables-container_header_items">
+                            Фишки
                         </div>
-                        <div className="tables-container_header_password">
-                            <h3>Тип стола</h3>
+
+                        <div className="tables-container_header_password tables-container_header_items">
+                            Тип стола
                         </div>
+
                     </div>
                     <div className="tables-container_main">
-                        {this.props.tables.map(table => <TableItem table={table} /> )}
+                        {this.props.tables.map(table => <TableItem key={table.id} table={table} /> )}
                     </div>    
 
                 </div>

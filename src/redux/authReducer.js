@@ -1,5 +1,5 @@
 import { authAPI } from '../api/api';
-
+import Cookies from 'js-cookie';
 
 const SET_TOKEN = 'SET_TOKEN';
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -79,8 +79,11 @@ export const checkIn = (login, password, nickname) => (dispatch) => {
 export const login = (login, password) => (dispatch) => {
     authAPI.login(login, password)
         .then((response) => {
+            console.log(response)
             if (response.data.result === 'ok') {
                 dispatch(getUserByToken(response.data.data));
+                Cookies.set('access_token', response.headers['x-access-token']);
+                Cookies.get('token');
             }
         })
         .catch(error => {
