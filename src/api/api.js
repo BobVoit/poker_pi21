@@ -100,11 +100,21 @@ export const tablesAPI = {
             }
         }, {withCredentials: true});
     },
+    // getTableById(id) {
+    //     return axios({
+    //         method: 'GET',
+    //         url: 'http://localhost/api/index.php?method=gettablebyid',
+    //         params: {
+    //             id
+    //         }
+    //     }, {withCredentials: true});
+    // },
     getTableById(id) {
-        return axios.get('http://localhost/api/index.php?method=gettablebyid&id=' + id);
+        return axios.get('http://poker/api/index.php?method=gettablebyid&id='+id);
     },
     getQuantPlayersOnTable(id) {
         return axios.get('http://localhost/api/index.php?method=getquantplayersontable&id=' + id);
     },
+
 }
 

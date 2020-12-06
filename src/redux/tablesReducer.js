@@ -1,4 +1,4 @@
-import { tablesAPI } from '../api/api';
+    import { tablesAPI } from '../api/api';
 
 const SET_TABLES = 'SET_TABLES';
 const IS_FETCHING = 'IS_FETCHING';
@@ -59,5 +59,11 @@ export const getTallTables = () => (dispatch) => {
         .catch(error => console.log(error));
 }
 
+export const getTableById = (id) => (dispatch) => {
+    tablesAPI.getTableById(id)
+        .then(response => {
+            console.log(response);
+        })
+} 
 
 export default tablesReducer;

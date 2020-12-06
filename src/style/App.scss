@@ -9,7 +9,8 @@
 
 .wrapper {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  overflow: auto;
   position: fixed;
   background: url("../images/back.jpg") no-repeat;
   .container {

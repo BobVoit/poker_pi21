@@ -1,171 +1,17 @@
-
-// .tables-container {
-//     width: 100%;
-//     height: 100%;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-
-//     .create_tables_but{
-//         position: absolute;
-//         top: 19vh;
-//         left: 0.5vw;
-//         height: 5vh;
-//         width: 11vw;
-//         font-size: 24px;
-//         font-weight: bold;
-//         border-radius: 10px;
-//         border: 4px solid #1F4D26;
-//         background-color:#ffe5b4;
-//         border-radius: 10px;
-//         text-align: center;
-//     }
-
-//         .tables-container_window {
-//             width: 75vw;
-//             height: 70vh;
-//             background: rgba(197, 201, 199, 0.95);
-//             position: absolute;
-//             top:19vh;
-//             left: 12.5vw;
-//             overflow: auto;
-            
-//             border-radius: 0.5vw;
-//             display: inline-block;
-            
-
-//             .tables-container_header{
-//                 width: 75vw;
-//                 height: 5vh;
-//                 font-size: 3vh;
-//                 padding-bottom: 5vh;
-//                 position: relative;
-//                 border-bottom: 2px solid #000;
-//                     h3{
-//                         color: #A0522D;
-//                     }
-            
-//             .tables-container_header_id{
-
-//                 width: 8vw;
-//                 height: 5vh;
-//                 float: left;
-//                 text-align:center;
-//                 padding-top: 1vh;
-//                 border-right: 2px solid rgb(255, 255, 255);
-//             }
-//             .tables-container_header_name{
-//                 width: 25vw;
-//                 height: 5vh;
-//                 float: left;
-//                 text-align:center;
-//                 padding-top: 1vh;
-//                 border-right: 2px solid rgb(255, 255, 255);
-                
-//             }
-//             .tables-container_header_players{
-//                 width: 10vw;
-//                 height: 5vh;
-//                 float: left;
-//                 text-align:center;
-//                 padding-top: 1vh;
-//                 border-right: 2px solid rgb(255, 255, 255);
-                
-//             }
-            
-//             .tables-container_header_bets{
-//                 width: 12vw;
-//                 height: 5vh;
-//                 float: left;
-//                 text-align:center;
-//                 padding-top: 1vh;
-//                 border-right: 2px solid rgb(255, 255, 255);
-//             }
-//             .tables-container_header_password{
-//                 width: 20vw;
-//                 height: 5vh;
-//                 float: left;
-//                 text-align:center;
-//                 padding-top: 1vh;
-//                 //border-right: 2px solid rgb(255, 255, 255);
-//             }
-//         }
-
-//         .tables-container_main{
-//                 position: relative;
-//                 width: 100%;
-//                 height: 65vh;
-//                 font-size: 3vh;
-                
-//                 //border-bottom: 2px solid rgb(255,255,255);
-//             .tables-container_create{
-//                 width: 75vw;
-//                 height: 4vh;
-//                 position: relative;
-//                 border-bottom: 2px solid rgb(255,255,255);
-//                 &:hover {
-//                     border: 2px solid #1F4D26;
-//                 }
-
-//                 .tables-container_create_id{
-//                 width: 8vw;
-//                 height:4vh;
-//                 float: left;
-//                 text-align:center;
-//                 padding-top: 0.5vh;
-//                 border-right: 2px solid rgb(255, 255, 255);
-                        
-//                 }
-
-//                 .tables-container_create_name{
-//                 width: 25vw;
-//                 height:4vh;
-//                 float: left;
-//                 text-align:center;
-//                 padding-top: 0.5vh;
-//                 border-right: 2px solid rgb(255, 255, 255);
-//                 }
-
-//                 .tables-container_create_players{
-//                     width: 10vw;
-//                     height:4vh;
-//                     float: left;
-//                     text-align:center;
-//                     padding-top: 0.5vh;
-//                     border-right: 2px solid rgb(255, 255, 255);
-//                 }
-//                 .tables-container_create_bets{
-//                     width: 12vw;
-//                     height:4vh;
-//                     float: left;
-//                     text-align:center;
-//                     padding-top: 0.5vh;
-//                     border-right: 2px solid rgb(255, 255, 255);
-//                 }
-
-//                 .tables-container_create_password{
-//                     width: 20vw;
-//                     height:4vh;
-//                     float: left;
-//                     text-align:center;
-//                     padding-top: 0.5vh;
-                    
-//                 }
-//             } 
-
-            
-//         }
-//         }
-        
-// }
-
+.tables-wrapper {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;   
+    align-items: center; 
+}
 
 .tables-container {
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 
@@ -221,16 +67,18 @@
     font-size: 15px;
 }
 
+
+
+
 .tables-container_create {
     width: 75vw;
     height: 4vh;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-around;
+    justify-content: space-around; 
     &:hover {
         border-bottom: 3px solid #1F4D26;
-    }   
-
+    }  
 }
 
 .tables-container_create_item {
@@ -242,5 +90,27 @@
     &:last-child {
         border-right: none;
     }
+    
 }
+
+
+
+
+.create-table {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    background: rgba(197, 201, 199, 0.95);
+    margin: 1%;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.create-table__inputs {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+
 
