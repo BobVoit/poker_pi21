@@ -79,11 +79,10 @@ export const checkIn = (login, password, nickname) => (dispatch) => {
 export const login = (login, password) => (dispatch) => {
     authAPI.login(login, password)
         .then((response) => {
-            console.log(response)
             if (response.data.result === 'ok') {
                 dispatch(getUserByToken(response.data.data));
-                Cookies.set('access_token', response.headers['x-access-token']);
-                Cookies.get('token');
+                Cookies.set('token', response.data.data, { expires: 365 });
+                console.log(response);
             }
         })
         .catch(error => {
@@ -97,6 +96,7 @@ export const getUserByToken = (token) => (dispatch) => {
             let data = response.data.data;
             if (response.data.result === 'ok') {
                 dispatch(setUserData(data.login, data.password, data.nickname, data.money, data.token, data.bank, true));
+                console.log(response);
             }
         })
         .catch(error => {
@@ -108,6 +108,7 @@ export const logout = (token) => (dispatch) => {
     authAPI.logout(token).then(response => {
         if (response.data.result === "ok" && response.data.data) {
             dispatch(setUserData(null, null, null, null, null, false))
+            Cookies.remove('token');
         }
     })
 }

@@ -4,11 +4,13 @@ import thunkMiddleware from 'redux-thunk';
 
 import authReducer from './authReducer';
 import tablesReducer from './tablesReducer';
+import appReducer from './appReducer';
 
 let reducers = combineReducers({
     form: formReducer,
     auth: authReducer,
-    tables: tablesReducer
+    tables: tablesReducer,
+    app: appReducer
 })
 
 

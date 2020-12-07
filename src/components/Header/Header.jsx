@@ -17,7 +17,7 @@ class Header extends React.Component {
         return (
             <header className="header-container">
                 {this.props.isAuth
-                ? <span className="header-container__user-login">{this.props.login}</span>
+                ? <NavLink to="/profile" >{this.props.login}</NavLink>
                 : null
                 }
                 <div>

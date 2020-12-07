@@ -28,7 +28,7 @@ export const authAPI = {
                 method: 'login',
                 login, password
             }
-        }, {withCredentials: true})
+        }, {withCredentials: true, credentials: "same-origin" })
     },
     logout(token) {
         return axios({

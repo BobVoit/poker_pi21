@@ -17,7 +17,7 @@ class Tables extends React.Component {
 
     componentDidMount() {
         this.props.getTallTables();
-        this.props.getTableById(10);
+        this.props.getTableById(2);
     }
 
     createTable = () => {

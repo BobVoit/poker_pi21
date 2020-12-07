@@ -18,8 +18,8 @@
 .tables-container_but {
     margin-right: 2%;
     button {
-        height: 5vh;
-        width: 11vw;
+        height: 40px;
+        width: 100%;
         font-size: 24px;
         font-weight: bold;
         border-radius: 10px;
@@ -104,12 +104,50 @@
     margin: 1%;
     border-radius: 10px;
     padding: 10px;
+    form {
+        width: 100%;
+    }
 }
 
 .create-table__inputs {
+    width: 90%;
     display: flex;
-    justify-content: space-between;
-    
+    justify-content: space-around;
+    align-items: center;
+}
+
+.create-table__item {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+
+    label {
+        font-family: 'Tajawal', sans-serif;
+        font-size: 15px;
+    }
+
+    input {
+        font-family: 'Tajawal', sans-serif;
+        height: 18px;
+        border: 2px solid #1F4D26;
+        border-radius: 5px;
+        font-size: 15px;
+        background: #fff;
+    }
+
+    button {
+        background: #fff;
+        width: 100px;
+        height: 20px;
+        border: 2px solid #1F4D26;
+        border-radius: 5px;
+        color: #1F4D26;
+        &:hover {
+            border: 2px solid #fff;
+            background: #1F4D26;
+            color: #fff;
+        }
+    }
 }
 
 
