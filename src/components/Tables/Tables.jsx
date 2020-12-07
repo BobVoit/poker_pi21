@@ -37,7 +37,11 @@ class Tables extends React.Component {
         if (this.props.isFetching) return <Preloader />;
         return (
             <div className="tables-wrapper">
-                { this.state.isCreateTable && <CreateTable />}
+                { this.state.isCreateTable && 
+                    <CreateTable 
+                        createTable={this.props.createTable} 
+                        token={this.props.token}
+                    />}
                 <div className="tables-container">
                     <div className="tables-container_but">
                         <button onClick={this.openCreateTablePage}>Создать стол</button>

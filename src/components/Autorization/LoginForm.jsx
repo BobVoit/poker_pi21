@@ -10,7 +10,7 @@ const minLengthLogin3 = minLengthCreator(3);
 const minLengthPassword5 = minLengthCreator(5);
 
 
-let LoginForm = (props) => {
+const LoginForm = (props) => {
     return (
         <div className="form-login-container">
             <div className="form-login-container__title">

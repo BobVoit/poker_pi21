@@ -37,7 +37,8 @@ export const createTable = (token, name, quantPlayer = null, rates = null, passw
     tablesAPI.createTable(token, name, quantPlayer, rates, password)
         .then((response) => {
             console.log(response);
-            if (response.data.result === 'ok') {
+            if (response.data.result === 'ok' && response.data.data === true) {
+                dispatch(getTallTables());
             }
         })
 }
