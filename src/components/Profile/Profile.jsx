@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
 import nullAvatar from '../../images/nullAvatar.jpg';
@@ -72,7 +73,7 @@ const Profile = (props) => {
 const mapStateToProps = (state) => ({
     nickname: state.auth.nickname, 
     money: state.auth.money,
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
 })
 
 export default compose(

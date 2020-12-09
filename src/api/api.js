@@ -91,7 +91,7 @@ export const tablesAPI = {
             }
         })
     },
-    getTallTables() {
+    getАllTables() {
         return axios({
             method: 'GET',
             url: 'http://poker/api/index.php?',

@@ -1,9 +1,13 @@
-import { authAPI } from '../api/api';
 import Cookies from 'js-cookie';
+
+import { authAPI } from '../api/api';
+import { errorsOfAPI } from '../another/errors';
 
 const SET_TOKEN = 'SET_TOKEN';
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_REGISTRATION = 'SET_REGISTRATION';
+const SET_CLEAR_ERROR = 'SET_CLEAR_ERROR';
+const SET_ERROR = "SET_ERROR";
 
 let initialState = {
     login: null,
@@ -43,6 +47,18 @@ const authReducer = (state = initialState, action) => {
                 isRegistration: action.isRegistration
             }
         }
+        case SET_ERROR: {
+            return {
+                ...state,
+                error: errorsOfAPI.find(elem => elem.value === action.error)
+            }
+        }
+        case SET_CLEAR_ERROR: {
+            return {
+                ...state,
+                error: ""
+            }
+        }
         default: 
             return state;
     }
@@ -64,11 +80,17 @@ export const setUserData = (login, password, nickname, money, token, bank, isAut
     bank
 })
 
+export const setError = (error) => ({type: SET_ERROR, error});
+
+export const setClearError = () => ({ type: SET_CLEAR_ERROR});
+
 
 export const checkIn = (login, password, nickname) => (dispatch) => {
     authAPI.checkIn(login, password, nickname).then((response) => {
         if (response.data.result === 'ok' && response.data.data === true) {
             dispatch(setRegistration(true));
+        } else if (response.result === "error") {
+            dispatch(setError(response.data));
         }
     })
     .catch((error) => {
@@ -82,7 +104,9 @@ export const login = (login, password) => (dispatch) => {
             if (response.data.result === 'ok') {
                 dispatch(getUserByToken(response.data.data));
                 Cookies.set('token', response.data.data, { expires: 365 });
-                console.log(response);
+                console.log(errorsOfAPI[0]);
+            } else if (response.data.result === "error") {
+                dispatch(setError(response.data.data));
             }
         })
         .catch(error => {
@@ -97,6 +121,8 @@ export const getUserByToken = (token) => (dispatch) => {
             if (response.data.result === 'ok') {
                 dispatch(setUserData(data.login, data.password, data.nickname, data.money, data.token, data.bank, true));
                 console.log(response);
+            } else if (response.result === "error") {
+                dispatch(setError(response.data.data));
             }
         })
         .catch(error => {
@@ -109,6 +135,8 @@ export const logout = (token) => (dispatch) => {
         if (response.data.result === "ok" && response.data.data) {
             dispatch(setUserData(null, null, null, null, null, false))
             Cookies.remove('token');
+        } else if (response.result === "error") {
+            dispatch(setError(response.data.data));
         }
     })
 }

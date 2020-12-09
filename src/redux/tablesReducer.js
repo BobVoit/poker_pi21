@@ -5,7 +5,8 @@ const IS_FETCHING = 'IS_FETCHING';
 
 let initialState = {
     tables: [],
-    isFetching: false
+    isFetching: false,
+    error: ""
 }
 
 const tablesReducer = (state = initialState, action) => {
@@ -38,7 +39,7 @@ export const createTable = (token, name, quantPlayer = null, rates = null, passw
         .then((response) => {
             console.log(response);
             if (response.data.result === 'ok' && response.data.data === true) {
-                dispatch(getTallTables());
+                dispatch(getАllTables());
             }
         })
 }
@@ -46,14 +47,15 @@ export const createTable = (token, name, quantPlayer = null, rates = null, passw
 export const connectToTable = (token, id) => (dispatch) => {
     tablesAPI.connectToTable(token, id)
         .then(response => {
-            
+            console.log(response);
         })
 }
 
-export const getTallTables = () => (dispatch) => {
+export const getАllTables = () => (dispatch) => {
     dispatch(setIsFetching(true));
-    tablesAPI.getTallTables()
+    tablesAPI.getАllTables()
         .then(response => {
+            
             dispatch(setTables(response.data.data));
             dispatch(setIsFetching(false));
         })

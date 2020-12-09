@@ -1,22 +1,19 @@
 .header-container {
   width: 100%;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.7);
+  height: 60px;
+  background: linear-gradient(to bottom, #ffffff, #06d117);
 
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
 
-  .header-container__user-login {
-    
-  }
-
   .header-container__info {
     width: 50%;
   }
 
   .header-container__login{ 
+    
       font-size: 10px;
       font-weight: 700;
   }
@@ -25,34 +22,58 @@
       height: 40px;
       width: 200px;
       margin: 10px;
-      font-size: 24px;
+      font-size: 20px;
+      
       font-weight: bold;
-      border-radius: 10px;
-      border: 4px solid #1F4D26;
-      background-color:#ffe5b4;
+      border-radius: 10px;   
+       color: rgb(0, 180, 0);
+       border: 3px solid #1F4D26;
+      background-color:#f8f4ed;
       border-radius: 10px;
       display: inline-block;
       text-align: center;
       align-items: flex-start;
+      a {
+        font-size: 3.5vh;
+        text-decoration: none;
+        color: #0cb106;
+      }
   }
 
   .header__btn-check-in{
       height: 40px;
       width: 200px;
       margin: 10px;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: bold;
-      border: 4px solid #1F4D26;
-      background-color:#ffe5b4;
+      border: 3px solid #1F4D26;
+      background-color:#f8f4ed;
       border-radius: 10px;
       display: flex;
       display: inline;
       justify-content: flex-start;
-      
+      a {
+        font-size: 3.5vh;
+        text-decoration: none;
+        color: #0cb106;
+      }
+  }
+  .header__btn-check-in:hover{
+    a {
+      font-size: 3.5vh;
+      text-decoration: none;
+      color: #ffffff;
+    }
+    background-color: #035a11;
   }
 
-  .info__btn{
-
+  .header__btn-login:hover{
+    a {
+      font-size: 3.5vh;
+      text-decoration: none;
+      color: #ffffff;
+    }
+    background-color: #035a11;
   }
 
   .navbar {
@@ -62,9 +83,12 @@
     flex-flow: row nowrap;
     justify-content: space-around;
     a {
-      font-size: 2.5vh;
+      font-size: 3.5vh;
       text-decoration: none;
-      color: #139c28;
+      color: #053b0d;
+    }
+    a:hover{
+      color: #d80e0e
     }
   }
   

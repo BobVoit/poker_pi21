@@ -1,5 +1,6 @@
 import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './style/App.scss';
 
@@ -8,9 +9,8 @@ import Login from './components/Autorization/Login';
 import CheckIn from './components/Autorization/CheckIn';
 import Profile from './components/Profile/Profile';
 import Tables from './components/Tables/Tables';
-import Preloader from './components/common/Preloader/Preloader';
 import { initializeApp } from './redux/appReducer';
-import { connect } from 'react-redux';
+import About from './components/About/About';
  
 
 class App extends React.Component  {
@@ -29,6 +29,7 @@ class App extends React.Component  {
               <Route path="/checkin" render={() => <CheckIn />} />
               <Route path="/profile" render={() => <Profile />} />
               <Route path="/tables" render={() => <Tables />} />
+              <Route path="/about" render={() => <About />} />
           </div>
         </div>
       </BrowserRouter>

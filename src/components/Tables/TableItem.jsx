@@ -3,8 +3,13 @@ import React from 'react';
 
 
 const TableItem = (props) => {
+
+    const onClick = () => {
+        props.onClick(props.token, props.table.id);
+    }
+
     return (
-        <div className="tables-container_create">
+        <div onClick={onClick} className="tables-container_create">
             <div className="tables-container_create_id tables-container_create_item">
                 {props.table.id}
             </div>

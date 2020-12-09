@@ -11,6 +11,7 @@ const minLengthPassword5 = minLengthCreator(5);
 
 
 const LoginForm = (props) => {
+    console.log(props.error);
     return (
         <div className="form-login-container">
             <div className="form-login-container__title">
@@ -30,6 +31,7 @@ const LoginForm = (props) => {
                         <button>Войти</button>
                     </div>
                 </form>
+                { props.error && <span>{props.error.message}</span> } 
                 <div className="form-login-container__link">
                     <NavLink to="/checkin">Зарегистрироваться</NavLink>
                 </div>

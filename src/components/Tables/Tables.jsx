@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import TableItem from './TableItem';
-import { createTable, connectToTable, getTallTables, getTableById} from '../../redux/tablesReducer';
+import { createTable, connectToTable, getАllTables, getTableById} from '../../redux/tablesReducer';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import Preloader from '../common/Preloader/Preloader';
 import CreateTable from './CreateTable'
@@ -16,16 +16,11 @@ class Tables extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getTallTables();
-        this.props.getTableById(2);
+        this.props.getАllTables();
     }
 
     createTable = () => {
         this.props.createTable(this.props.token, "Тест", 3, 1000, 1232423);
-    }
-
-    connectToTable = () => {
-        this.props.connectToTable(this.props.token, 1);
     }
 
     openCreateTablePage = () => {
@@ -71,7 +66,13 @@ class Tables extends React.Component {
 
                         </div>
                         <div className="tables-container_main">
-                            {this.props.tables.map(table => <TableItem key={table.id} table={table} /> )}
+                            {this.props.tables.map(table => 
+                            <TableItem 
+                                key={table.id}
+                                token={this.props.token}
+                                onClick={this.props.connectToTable} 
+                                table={table} 
+                            /> )}
                         </div>    
 
                     </div>
@@ -90,6 +91,6 @@ const mapStateToProps = (state) => ({
 export default compose(connect(mapStateToProps, {
     createTable,
     connectToTable,
-    getTallTables,
+    getАllTables,
     getTableById
 }), withAuthRedirect) (Tables);
