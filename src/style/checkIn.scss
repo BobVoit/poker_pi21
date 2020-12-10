@@ -68,6 +68,14 @@
           background-color: rgb(37, 87, 8);
         }
       }
+      .form-checkin-container__error-api {
+        width: 80%;
+        font-size: 12px;
+        color: #ff0000;
+        margin-top: 14px;
+        display: flex;
+        justify-content: center;
+      }
     }
   }
   

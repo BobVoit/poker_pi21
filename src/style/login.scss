@@ -74,7 +74,15 @@
         }
       }
     }
-  
+    
+    .form-login-container__error-api {
+      width: 80%;
+      font-size: 12px;
+      color: #ff0000;
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+    }
 
     .form-login-container__link {
       width: 100%;
