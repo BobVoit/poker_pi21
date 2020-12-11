@@ -80,9 +80,9 @@ export const setUserData = (login, password, nickname, money, token, bank, isAut
     bank
 })
 
-export const setError = (error) => ({type: SET_ERROR, error});
+export const setAuthError = (error) => ({type: SET_ERROR, error});
 
-export const setClearError = () => ({ type: SET_CLEAR_ERROR});
+export const setAuthClearError = () => ({ type: SET_CLEAR_ERROR});
 
 
 export const checkIn = (login, password, nickname) => (dispatch) => {
@@ -90,7 +90,7 @@ export const checkIn = (login, password, nickname) => (dispatch) => {
         if (response.data.result === 'ok' && response.data.data === true) {
             dispatch(setRegistration(true));
         } else if (response.result === "error") {
-            dispatch(setError(response.data));
+            dispatch(setAuthError(response.data));
         }
     })
     .catch((error) => {
@@ -106,7 +106,7 @@ export const login = (login, password) => (dispatch) => {
                 Cookies.set('token', response.data.data, { expires: 365 });
                 console.log(errorsOfAPI[0]);
             } else if (response.data.result === "error") {
-                dispatch(setError(response.data.data));
+                dispatch(setAuthError(response.data.data));
             }
         })
         .catch(error => {
@@ -122,7 +122,7 @@ export const getUserByToken = (token) => (dispatch) => {
                 dispatch(setUserData(data.login, data.password, data.nickname, data.money, data.token, data.bank, true));
                 console.log(response);
             } else if (response.result === "error") {
-                dispatch(setError(response.data.data));
+                dispatch(setAuthError(response.data.data));
             }
         })
         .catch(error => {
@@ -136,7 +136,7 @@ export const logout = (token) => (dispatch) => {
             dispatch(setUserData(null, null, null, null, null, false))
             Cookies.remove('token');
         } else if (response.result === "error") {
-            dispatch(setError(response.data.data));
+            dispatch(setAuthError(response.data.data));
         }
     })
 }

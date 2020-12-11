@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import CheckInForm from './CheckInForm';
-import { checkIn, setRegistration, setClearError } from '../../redux/authReducer';
+import { checkIn, setRegistration, setAuthClearError } from '../../redux/authReducer';
 
 const CheckIn = (props) => {
     const onSubmit = (formData) => {
-        props.setClearError();
+        props.setAuthClearError();
         props.checkIn(formData.login, formData.password, formData.nickname)
     }
 
@@ -34,5 +34,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
     checkIn, 
     setRegistration,
-    setClearError
+    setAuthClearError
 })(CheckIn);

@@ -1,7 +1,11 @@
-    import { tablesAPI } from '../api/api';
+import { tablesAPI } from '../api/api';
+import { errorsOfAPI } from '../another/errors';
+
 
 const SET_TABLES = 'SET_TABLES';
 const IS_FETCHING = 'IS_FETCHING';
+const SET_ERROR = 'SET_ERROR';
+const SET_CLEAR_ERROR = 'SET_CLEAR_ERROR';
 
 let initialState = {
     tables: [],
@@ -23,6 +27,12 @@ const tablesReducer = (state = initialState, action) => {
                 isFetching: action.isFetching
             }
         }
+        case SET_ERROR: {
+            return {
+                ...state,
+                error: errorsOfAPI.find(elem => elem.value === action.error)
+            }
+        }
         default: 
             return state;
     }
@@ -32,6 +42,10 @@ const tablesReducer = (state = initialState, action) => {
 export const setTables = (tables) => ({ type: SET_TABLES, tables});
 
 export const setIsFetching = (isFetching) => ({type: IS_FETCHING, isFetching});
+
+export const setErrorTable = (error) => ({type: SET_ERROR, error});
+
+export const setClearErrorTable = () => ({type: SET_CLEAR_ERROR});
 
 
 export const createTable = (token, name, quantPlayer = null, rates = null, password = null) => (dispatch) => {
@@ -54,8 +68,7 @@ export const connectToTable = (token, id) => (dispatch) => {
 export const getАllTables = () => (dispatch) => {
     dispatch(setIsFetching(true));
     tablesAPI.getАllTables()
-        .then(response => {
-            
+        .then(response => {  
             dispatch(setTables(response.data.data));
             dispatch(setIsFetching(false));
         })

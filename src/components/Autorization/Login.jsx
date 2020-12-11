@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import LoginForm from './LoginForm';
 import { Redirect } from 'react-router-dom';
 
-import { login, setClearError } from '../../redux/authReducer';
+import { login, setAuthClearError } from '../../redux/authReducer';
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        props.setClearError();
+        props.setAuthClearError();
         props.login(formData.login, formData.password);
     }
     let err = props.error;
@@ -32,5 +32,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
     login,
-    setClearError
+    setAuthClearError
 })(Login);
