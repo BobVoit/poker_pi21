@@ -4,8 +4,8 @@ import { errorsOfAPI } from '../another/errors';
 
 const SET_TABLES = 'SET_TABLES';
 const IS_FETCHING = 'IS_FETCHING';
-const SET_ERROR = 'SET_ERROR';
-const SET_CLEAR_ERROR = 'SET_CLEAR_ERROR';
+const SET_ERROR = 'SET_ERROR_TABLE';
+const SET_CLEAR_ERROR = 'SET_CLEAR_ERROR_TABLE';
 
 let initialState = {
     tables: [],
@@ -48,38 +48,28 @@ export const setErrorTable = (error) => ({type: SET_ERROR, error});
 export const setClearErrorTable = () => ({type: SET_CLEAR_ERROR});
 
 
-export const createTable = (token, name, quantPlayer = null, rates = null, password = null) => (dispatch) => {
-    tablesAPI.createTable(token, name, quantPlayer, rates, password)
-        .then((response) => {
-            console.log(response);
-            if (response.data.result === 'ok' && response.data.data === true) {
-                dispatch(getАllTables());
-            }
-        })
+export const createTable = (token, name, quantPlayer = null, rates = null, password = null) => async (dispatch) => {
+    let response = await tablesAPI.createTable(token, name, quantPlayer, rates, password)
+    if (response.data.result === 'ok' && response.data.data === true) {
+        dispatch(getАllTables());
+    }
 }
 
-export const connectToTable = (token, id) => (dispatch) => {
-    tablesAPI.connectToTable(token, id)
-        .then(response => {
-            console.log(response);
-        })
+export const connectToTable = (token, id) => async (dispatch) => {
+    let response = await tablesAPI.connectToTable(token, id)
+    console.log(response);
 }
 
-export const getАllTables = () => (dispatch) => {
+export const getАllTables = () => async (dispatch) => {
     dispatch(setIsFetching(true));
-    tablesAPI.getАllTables()
-        .then(response => {  
-            dispatch(setTables(response.data.data));
-            dispatch(setIsFetching(false));
-        })
-        .catch(error => console.log(error));
+    let response = await tablesAPI.getАllTables();
+    dispatch(setTables(response.data.data));
+    dispatch(setIsFetching(false));
 }
 
-export const getTableById = (id) => (dispatch) => {
-    tablesAPI.getTableById(id)
-        .then(response => {
-            console.log(response);
-        })
+export const getTableById = (id) => async (dispatch) => {
+    let response = await tablesAPI.getTableById(id);
+    console.log(response);
 } 
 
 export default tablesReducer;

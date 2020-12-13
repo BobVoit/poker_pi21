@@ -7,11 +7,12 @@
 @import "./tables.scss";
 @import "./formControls.scss";
 @import "./about.scss";
+@import "./game.scss";
 
 .wrapper {
   width: 100%;
   height: 100%;
-  overflow: auto;
+  // overflow: auto;
   position: fixed;
   background: url("../images/back.jpg") no-repeat;
   .container {

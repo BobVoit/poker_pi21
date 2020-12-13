@@ -1,7 +1,7 @@
 .header-container {
   width: 100%;
   height: 60px;
-  background: linear-gradient(to bottom, #ffffff, #06d117);
+  background: linear-gradient(to bottom, #f8f8f8, #78d680);
 
   display: flex;
   flex-flow: row nowrap;
@@ -10,7 +10,36 @@
 
   .header-container__info {
     width: 50%;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
   }
+
+  .header-container__name {
+    margin: 0 5px 0 5px;
+    a {
+      font-size: 18px;
+    }
+  }
+
+  .header-container__btn-logout {
+    display: flex;
+    button {
+      padding: 4px 8px;
+      border-radius: 5px;
+      &:hover {
+        border: 2px solid #0cb106;
+      }
+      &:active {
+        background: #7bdd84;
+      }
+    }
+  }
+
+
+
 
   .header-container__login{ 
     
@@ -26,15 +55,15 @@
       
       font-weight: bold;
       border-radius: 10px;   
-       color: rgb(0, 180, 0);
-       border: 3px solid #1F4D26;
+      color: rgb(0, 180, 0);
+      border: 3px solid #1F4D26;
       background-color:#f8f4ed;
       border-radius: 10px;
       display: inline-block;
       text-align: center;
       align-items: flex-start;
       a {
-        font-size: 3.5vh;
+        font-size: 26px;
         text-decoration: none;
         color: #0cb106;
       }
@@ -53,7 +82,7 @@
       display: inline;
       justify-content: flex-start;
       a {
-        font-size: 3.5vh;
+        font-size: 26px;
         text-decoration: none;
         color: #0cb106;
       }
@@ -83,7 +112,7 @@
     flex-flow: row nowrap;
     justify-content: space-around;
     a {
-      font-size: 3.5vh;
+      font-size: 23px;
       text-decoration: none;
       color: #053b0d;
     }

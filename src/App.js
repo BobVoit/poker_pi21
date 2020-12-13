@@ -11,6 +11,9 @@ import Profile from './components/Profile/Profile';
 import Tables from './components/Tables/Tables';
 import { initializeApp } from './redux/appReducer';
 import About from './components/About/About';
+import Game from './components/Game/Game';
+
+
  
 
 class App extends React.Component  {
@@ -30,6 +33,7 @@ class App extends React.Component  {
               <Route path="/profile" render={() => <Profile />} />
               <Route path="/tables" render={() => <Tables />} />
               <Route path="/about" render={() => <About />} />
+              <Route path="/game" render={() => <Game />} />
           </div>
         </div>
       </BrowserRouter>

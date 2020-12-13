@@ -6,8 +6,8 @@ import { errorsOfAPI } from '../another/errors';
 const SET_TOKEN = 'SET_TOKEN';
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_REGISTRATION = 'SET_REGISTRATION';
-const SET_CLEAR_ERROR = 'SET_CLEAR_ERROR';
-const SET_ERROR = "SET_ERROR";
+const SET_CLEAR_ERROR = 'SET_CLEAR_ERROR_AUTH';
+const SET_ERROR = "SET_ERROR_AUTH";
 
 let initialState = {
     login: null,
@@ -85,60 +85,45 @@ export const setAuthError = (error) => ({type: SET_ERROR, error});
 export const setAuthClearError = () => ({ type: SET_CLEAR_ERROR});
 
 
-export const checkIn = (login, password, nickname) => (dispatch) => {
-    authAPI.checkIn(login, password, nickname).then((response) => {
-        if (response.data.result === 'ok' && response.data.data === true) {
-            dispatch(setRegistration(true));
-        } else if (response.result === "error") {
-            dispatch(setAuthError(response.data));
-        }
-    })
-    .catch((error) => {
-        // написать логику
-    })
+export const checkIn = (login, password, nickname) => async (dispatch) => {
+    let response = await authAPI.checkIn(login, password, nickname);
+    if (response.data.result === 'ok' && response.data.data === true) {
+        dispatch(setRegistration(true));
+    } else if (response.result === "error") {
+        dispatch(setAuthError(response.data));
+    }
 }
 
-export const login = (login, password) => (dispatch) => {
-    authAPI.login(login, password)
-        .then((response) => {
-            if (response.data.result === 'ok') {
-                dispatch(getUserByToken(response.data.data));
-                Cookies.set('token', response.data.data, { expires: 365 });
-                console.log(errorsOfAPI[0]);
-            } else if (response.data.result === "error") {
-                dispatch(setAuthError(response.data.data));
-            }
-        })
-        .catch(error => {
-            // написать логику
-        })
+export const login = (login, password) => async (dispatch) => {
+    let response = await authAPI.login(login, password);
+    if (response.data.result === 'ok') {
+        dispatch(getUserByToken(response.data.data));
+        Cookies.set('token', response.data.data, { expires: 365 });
+        console.log(errorsOfAPI[0]);
+    } else if (response.data.result === "error") {
+        dispatch(setAuthError(response.data.data));
+    }
 }
 
-export const getUserByToken = (token) => (dispatch) => {
-    authAPI.getUserByToken(token)
-        .then(response => {
-            let data = response.data.data;
-            if (response.data.result === 'ok') {
-                dispatch(setUserData(data.login, data.password, data.nickname, data.money, data.token, data.bank, true));
-                console.log(response);
-            } else if (response.result === "error") {
-                dispatch(setAuthError(response.data.data));
-            }
-        })
-        .catch(error => {
-            // написать логику
-        })
+export const getUserByToken = (token) => async (dispatch) => {
+    let response = await authAPI.getUserByToken(token);
+    let data = response.data.data;
+    if (response.data.result === 'ok') {
+        dispatch(setUserData(data.login, data.password, data.nickname, data.money, data.token, data.bank, true));
+        console.log(response);
+    } else if (response.result === "error") {
+        dispatch(setAuthError(response.data.data));
+    }
 }
 
-export const logout = (token) => (dispatch) => {
-    authAPI.logout(token).then(response => {
-        if (response.data.result === "ok" && response.data.data) {
-            dispatch(setUserData(null, null, null, null, null, false))
-            Cookies.remove('token');
-        } else if (response.result === "error") {
-            dispatch(setAuthError(response.data.data));
-        }
-    })
+export const logout = (token) => async (dispatch) => {
+    let response = await authAPI.logout(token);
+    if (response.data.result === "ok" && response.data.data) {
+        dispatch(setUserData(null, null, null, null, null, false))
+        Cookies.remove('token');
+    } else if (response.result === "error") {
+        dispatch(setAuthError(response.data.data));
+    }
 }
 
 export default authReducer;

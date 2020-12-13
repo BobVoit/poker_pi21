@@ -16,33 +16,12 @@ class Header extends React.Component {
     render() {
         return (
             <header className="header-container">
-                <div className="header-container__info">
-                    {this.props.isAuth
-                    ? <NavLink to="/profile" >{this.props.login}</NavLink>
-                    : null
-                    }
-                    { !this.props.isAuth 
-                        ? <div className="header-container__login">
-                            <button className="header__btn-check-in">
-                                <NavLink to="/checkin">Регистрация</NavLink>
-                                </button> 
-                                <button className="header__btn-login">
-                                <NavLink to="/login">Войти</NavLink>
-                            </button>  
-                            <button className="info__btn ml-auto">
-                                
-                            </button> 
-                            
-                        </div>
-                        : <div>
-                            <button onClick={this.logout}>Выйти</button>
-                        </div>
-                    }
-                </div>
-                <nav className="navbar">
-                    <NavLink to="/tables">Столы</NavLink>
-                    <NavLink to="/about">Об игре</NavLink>
-                </nav>
+                <HeaderInfo 
+                    login={this.props.login}
+                    isAuth={this.props.isAuth}
+                    logout={this.logout}
+                />
+                <Navbar />
             </header>
         )
     }
