@@ -1,8 +1,8 @@
 .header-container {
   width: 100%;
   height: 60px;
-  background: linear-gradient(to bottom, #f8f8f8, #78d680);
-
+  background: #43ce58;
+  font-family: 'Roboto', sans-serif;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -20,54 +20,62 @@
   .header-container__name {
     margin: 0 5px 0 5px;
     a {
-      font-size: 18px;
+      font-size: 16px;
+      color: #1F4D26;
     }
   }
 
   .header-container__btn-logout {
     display: flex;
+
     button {
-      padding: 4px 8px;
-      border-radius: 5px;
-      &:hover {
-        border: 2px solid #0cb106;
-      }
-      &:active {
-        background: #7bdd84;
-      }
+      background: rgb(38, 175, 72);
     }
+    // button {
+    //   padding: 4px 8px;
+    //   border-radius: 5px;
+    //   &:hover {
+    //     border: 2px solid #0cb106;
+    //   }
+    //   &:active {
+    //     background: #7bdd84;
+    //   }
+    // }
   }
 
 
 
 
   .header-container__login{ 
-    
-      font-size: 10px;
-      font-weight: 700;
+    font-size: 10px;
+    font-weight: 700;
+
+    a {
+      margin: 0 3px 0 3px;
+    }
   }
 
-  .header__btn-login{
-      height: 40px;
-      width: 200px;
-      margin: 10px;
-      font-size: 20px;
+  // .header__btn-login{
+  //     height: 40px;
+  //     width: 200px;
+  //     margin: 10px;
+  //     font-size: 20px;
       
-      font-weight: bold;
-      border-radius: 10px;   
-      color: rgb(0, 180, 0);
-      border: 3px solid #1F4D26;
-      background-color:#f8f4ed;
-      border-radius: 10px;
-      display: inline-block;
-      text-align: center;
-      align-items: flex-start;
-      a {
-        font-size: 26px;
-        text-decoration: none;
-        color: #0cb106;
-      }
-  }
+  //     font-weight: bold;
+  //     border-radius: 10px;   
+  //     color: rgb(0, 180, 0);
+  //     border: 3px solid #1F4D26;
+  //     background-color:#f8f4ed;
+  //     border-radius: 10px;
+  //     display: inline-block;
+  //     text-align: center;
+  //     align-items: flex-start;
+  //     a {
+  //       font-size: 26px;
+  //       text-decoration: none;
+  //       color: #0cb106;
+  //     }
+  // }
 
   .header__btn-check-in{
       height: 40px;
@@ -82,7 +90,7 @@
       display: inline;
       justify-content: flex-start;
       a {
-        font-size: 26px;
+        font-size: 16px;
         text-decoration: none;
         color: #0cb106;
       }
@@ -106,18 +114,13 @@
   }
 
   .navbar {
-    // margin-right: 10vw;
     width: 30%;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
     a {
-      font-size: 23px;
-      text-decoration: none;
-      color: #053b0d;
-    }
-    a:hover{
-      color: #d80e0e
+      font-size: 20px;
+      color: #1F4D26;
     }
   }
   

@@ -19,7 +19,6 @@ const CheckIn = (props) => {
 
     return (
         <div>
-            <div>Регистрация</div>
             <CheckInForm errorAPI={props.errorAPI} onSubmit={onSubmit} />
         </div>
     )

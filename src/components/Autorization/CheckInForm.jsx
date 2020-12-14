@@ -1,8 +1,8 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { required, maxLengthCreator, minLengthCreator } from '../../utils/validators/validators';
 import { Input } from '../common/FormsControls/FormsControls';
+import { Button } from '@material-ui/core';
 
 const maxLengthLogin30 = maxLengthCreator(30);
 const minLengthLogin3 = minLengthCreator(3);
@@ -31,7 +31,7 @@ const CheckInForm = (props) => {
                         name={"nickname"} placeholder={"Nickname"} component={Input}/>    
                     </div>
                     <div className="form-checkin-container__button">
-                        <button>Зарегистрироваться</button>
+                        <Button type="submit" variant="contained">Зарегистрироваться</Button>
                     </div>
                 </form>
                 {props.errorAPI && <div className="form-checkin-container__error-api">{props.errorAPI.message}</div> } 

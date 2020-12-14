@@ -1,3 +1,4 @@
+import { Button } from '@material-ui/core';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
@@ -20,19 +21,19 @@ const LoginForm = (props) => {
                 <form onSubmit={props.handleSubmit} >
                     <div className="form-login-container__input">
                         <Field validate={[required, maxLengthLogin30, minLengthLogin3]}
-                        placeholder={"Login"} name={"login"} component={Input} />
+                        placeholder={"Login"}  name={"login"} component={Input} />
                     </div>
                     <div className="form-login-container__input">
                         <Field validate={[required, minLengthPassword5]}
                         placeholder={"Password"} name={"password"} type={'password'} component={Input} />
                     </div>
                     <div className="form-login-container__button">
-                        <button>Войти</button>
+                        <Button type="submit" variant="contained">Войти</Button>
                     </div>
                 </form>
                 { props.errorAPI && <div className="form-login-container__error-api">{props.errorAPI.message}</div> } 
                 <div className="form-login-container__link">
-                    <NavLink to="/checkin">Зарегистрироваться</NavLink>
+                    <Button variant="contained" component={NavLink} to="/checkin">Зарегистрироваться</Button>
                 </div>
             </div>
         </div>

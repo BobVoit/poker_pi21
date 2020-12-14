@@ -7,6 +7,7 @@ import { login, setAuthClearError } from '../../redux/authReducer';
 
 const Login = (props) => {
     const onSubmit = (formData) => {
+        console.log(formData.login);
         props.setAuthClearError();
         props.login(formData.login, formData.password);
     }
@@ -17,9 +18,6 @@ const Login = (props) => {
 
     return (
         <div className="authorization-container">
-            <div className="authorization-form__title">
-                Покер
-            </div>
             <LoginForm errorAPI={props.errorAPI} onSubmit={onSubmit} />   
         </div>
     )
