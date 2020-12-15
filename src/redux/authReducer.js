@@ -10,7 +10,7 @@ const SET_CLEAR_ERROR = 'SET_CLEAR_ERROR_AUTH';
 const SET_ERROR = "SET_ERROR_AUTH";
 
 let initialState = {
-    login: null,
+    login: null,    
     password: null,
     nickname: null,
     money: null,

@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
 class Game extends React.Component {
 
@@ -7,6 +10,9 @@ class Game extends React.Component {
         <div className="poker-table">
             <div className="poker-table-wrapper-border">
                 <div className="poker-table-wrapper">
+                    <div className="poker-table__table-cards">
+                        
+                    </div>
                     <div className="poker-table__game-block">
                         <div className="players player1">Player1</div>
                         <div className="players player2">Player2</div>
@@ -42,5 +48,9 @@ class Game extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => ({});
 
-export default Game;
+export default compose(
+    connect(mapStateToProps, null),
+    withAuthRedirect
+)(Game);

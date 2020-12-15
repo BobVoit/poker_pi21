@@ -6,6 +6,7 @@ const TableItem = (props) => {
 
     const onClick = () => {
         props.onClick(props.token, props.table.id);
+        props.openGame();
     }
 
     return (

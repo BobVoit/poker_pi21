@@ -7,12 +7,15 @@ import { createTable, connectToTable, getАllTables, getTableById} from '../../r
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import Preloader from '../common/Preloader/Preloader';
 import CreateTable from './CreateTable'
+import { Redirect } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 
 
 class Tables extends React.Component {
     state = {
         isCreateTable: false,
+        isOpenGame: false
     }
 
     componentDidMount() {
@@ -27,9 +30,15 @@ class Tables extends React.Component {
         this.setState({ isCreateTable: !this.state.isCreateTable })
     }
     
+    openGame = () => {
+        this.setState({
+            isOpenGame: true
+        })
+    }
 
     render() {  
         if (this.props.isFetching) return <Preloader />;
+        if (this.state.isOpenGame) return <Redirect to="/game" />
         return (
             <div className="tables-wrapper">
                 { this.state.isCreateTable && 
@@ -39,7 +48,8 @@ class Tables extends React.Component {
                     />}
                 <div className="tables-container">
                     <div className="tables-container_but">
-                        <button onClick={this.openCreateTablePage}>Создать стол</button>
+                        {/* <button onClick={this.openCreateTablePage}>Создать стол</button> */}
+                        <Button onClick={this.openCreateTablePage} variant="contained">Создать стол</Button>
                     </div>
                     <div className="tables-container_window">
                         <div className="tables-container_header">
@@ -68,6 +78,7 @@ class Tables extends React.Component {
                         <div className="tables-container_main">
                             {this.props.tables.map(table => 
                             <TableItem 
+                                openGame={this.openGame}
                                 key={table.id}
                                 token={this.props.token}
                                 onClick={this.props.connectToTable} 
