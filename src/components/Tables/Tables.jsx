@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { Redirect } from 'react-router-dom';
+import { Button } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 import TableItem from './TableItem';
 import { createTable, connectToTable, getАllTables, getTableById} from '../../redux/tablesReducer';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import Preloader from '../common/Preloader/Preloader';
 import CreateTable from './CreateTable'
-import { Redirect } from 'react-router-dom';
-import { Button } from '@material-ui/core';
+
 
 
 
@@ -48,7 +50,6 @@ class Tables extends React.Component {
                     />}
                 <div className="tables-container">
                     <div className="tables-container_but">
-                        {/* <button onClick={this.openCreateTablePage}>Создать стол</button> */}
                         <Button onClick={this.openCreateTablePage} variant="contained">Создать стол</Button>
                     </div>
                     <div className="tables-container_window">
@@ -91,6 +92,10 @@ class Tables extends React.Component {
             </div>
         )
     }
+}
+
+Tables.propTypes = {
+    token: PropTypes.string,
 }
 
 const mapStateToProps = (state) => ({

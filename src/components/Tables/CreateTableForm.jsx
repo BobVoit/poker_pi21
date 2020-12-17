@@ -21,7 +21,7 @@ class CreateTableForm extends React.Component {
                         <div className="create-table__count-players create-table__item">
                             <label htmlFor="createCountPlayers">Количество игроков</label>
                             <Field id="createCountPlayers"
-                            type="number" name="countPlayers" component={"input"} />
+                            type="number" min={2} max={7} name="countPlayers" component={"input"} />
                         </div>
                         <div className="create-table__password create-table__item">
                             <label htmlFor="createTablePassword">Пароль</label>

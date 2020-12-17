@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import Player from './Player';
+import CardBackSide from '../../images/cards/Back.png';
 
 class Game extends React.Component {
 
@@ -10,15 +12,21 @@ class Game extends React.Component {
         <div className="poker-table">
             <div className="poker-table-wrapper-border">
                 <div className="poker-table-wrapper">
-                    <div className="poker-table__table-cards">
-                        
-                    </div>
                     <div className="poker-table__game-block">
-                        <div className="players player1">Player1</div>
-                        <div className="players player2">Player2</div>
-                        <div className="players player3">Player3</div>
+                        <Player nameClass="player1" nickname="player1" />
+                        <Player nameClass="player2" nickname="player2" />
+                        <Player nameClass="player3" nickname="player3" />
+                        <Player nameClass="player4" nickname="player4" />
+                        <Player nameClass="player5" nickname="player5" />
+                        <Player nameClass="player6" nickname="player6" />
+                        <Player nameClass="player7" nickname="player7" /> 
                     </div>
-
+                    <div className="poker-table__table-cards">
+                        <img src={CardBackSide} alt="" width="70"/>
+                        <img src={CardBackSide} alt="" width="70"/>
+                        <img src={CardBackSide} alt="" width="70"/>
+                        <img src={CardBackSide} alt="" width="70"/>
+                    </div>
                     <div className="poker-table-bet-block-container">
                         <div className="poker-table-bet-block">
                             <div className="poker-table-bet-block-left">

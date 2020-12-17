@@ -20,7 +20,8 @@ b{
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    overflow: auto;
+    flex-direction: column;
     align-items: center;
 
     .about-container_window {
@@ -29,7 +30,7 @@ b{
         background: rgba(197, 201, 199, 0.95);
         margin-top: 15.5vh;
         border-radius: 15px;
-        margin-bottom: 15.5vh;
+        margin-bottom: 20vh;
 
         .about-container_header {
             width: 100%;

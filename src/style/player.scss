@@ -1,0 +1,68 @@
+.player {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+
+.player1 {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+}
+
+.player2 {
+    position: absolute;
+    left: 10%;
+    top: 94%;
+}
+
+.player3 {
+    position: absolute;
+    left: -10%;
+    top: 45%;
+}
+
+.player4{
+    position: absolute;
+    left: 5%;
+    top: -4%; 
+}
+
+.player5{
+    position: absolute;
+    left: 50%;
+    top: -15%;
+}
+
+.player6{
+    position: absolute;
+    left: 90%;
+    top: 0%;
+}
+
+.player7 {
+    position: absolute;
+    left: 100%;
+    top: 45%;
+}
+
+.player__cards {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    img {
+        position: inherit;
+        width: 50px;
+    }
+
+    img:last-child {
+        z-index: 2;
+    }
+}
+
+.player__nickname {
+    display: flex;
+    justify-content: center;
+    color: #fff;
+}

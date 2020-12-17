@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import LoginForm from './LoginForm';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { login, setAuthClearError } from '../../redux/authReducer';
 
@@ -11,7 +12,6 @@ const Login = (props) => {
         props.setAuthClearError();
         props.login(formData.login, formData.password);
     }
-    let err = props.error;
     if (props.isAuth) {
         return <Redirect to="/profile" />
     }
@@ -21,6 +21,10 @@ const Login = (props) => {
             <LoginForm errorAPI={props.errorAPI} onSubmit={onSubmit} />   
         </div>
     )
+}
+
+Login.propTypes = {
+    isAuth: PropTypes.bool,
 }
 
 const mapStateToProps = (state) => ({

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { logout } from '../../redux/authReducer';
 import HeaderInfo from './HeaderInfo';
@@ -25,6 +25,12 @@ class Header extends React.Component {
             </header>
         )
     }
+}
+
+Header.propTypes = {
+    isAuth: PropTypes.bool,
+    login: PropTypes.string,
+    token: PropTypes.string
 }
 
 

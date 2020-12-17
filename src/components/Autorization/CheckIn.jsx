@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import CheckInForm from './CheckInForm';
 import { checkIn, setRegistration, setAuthClearError } from '../../redux/authReducer';
@@ -23,6 +24,13 @@ const CheckIn = (props) => {
         </div>
     )
 }
+
+CheckIn.propTypes = {
+    isAuth: PropTypes.bool,
+    isRegistration: PropTypes.bool,
+    errorAPI: PropTypes.string
+}
+
 
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,

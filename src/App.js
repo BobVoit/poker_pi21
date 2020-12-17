@@ -26,7 +26,7 @@ class App extends React.Component  {
     return (
       <BrowserRouter>
         <div className="wrapper">
-          <div className="container">
+          {/* <div className="container"> */}
               <Header /> 
               <Route path="/login" render={() => <Login />} />
               <Route path="/checkin" render={() => <CheckIn />} />
@@ -34,7 +34,7 @@ class App extends React.Component  {
               <Route path="/tables" render={() => <Tables />} />
               <Route path="/about" render={() => <About />} />
               <Route path="/game" render={() => <Game />} />
-          </div>
+          {/* </div> */}
         </div>
       </BrowserRouter>
     );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import PropTypes from 'prop-types';
 
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
@@ -69,6 +70,13 @@ const Profile = (props) => {
     </div>
     )
 }
+
+Profile.propTypes = {
+    nickname: PropTypes.string,
+    money: PropTypes.number,
+    isAuth: PropTypes.bool
+}
+
 
 const mapStateToProps = (state) => ({
     nickname: state.auth.nickname, 
