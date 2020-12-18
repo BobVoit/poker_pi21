@@ -13,9 +13,8 @@ import PlayerSeat from './PlayerSeat';
   Внимание: ширина берется из ThemeProvider - theme/sizing/seat/width
 */
 
-
 const AdaptiveWrapper = styled.div`
-  width: ${props => props.theme.sizing.seat.width};
+  width: ${props => props.theme.seat.width};
   height: auto;
 
   &:before {
@@ -34,14 +33,13 @@ const AdaptiveContainer = styled(PlayerSeat)`
   left: 0;
 `;
 
-const AdaptiveSeat = props =>(
-    <AdaptiveWrapper size={props.size}>
-        <AdaptiveContainer {...props} />
-    </AdaptiveWrapper>
-);
+const AdaptiveSeat = props =>
+  (<AdaptiveWrapper size={props.size}>
+    <AdaptiveContainer {...props} />
+  </AdaptiveWrapper>);
 
 AdaptiveSeat.propTypes = {
-    size: PropTypes.number.isRequired,
+  size: PropTypes.number.isRequired,
 };
 
-export default AdaptiveSeat;    
+export default AdaptiveSeat;

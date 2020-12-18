@@ -7,12 +7,15 @@ import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import CardBackSide from '../../images/cards/Back.png';
 
 import Table from './Table/Table';
+import TablePoker from './TablePoker/TablePoker';
 
 class Game extends React.Component {
 
     render() {
         return (
-            <Table />
+            <div className="game-wrapper">
+                <TablePoker />
+            </div>
         )
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Fitter from '../Fitter';
+import Fitter from '../Another/Fitter';
 
 const PotSize = styled.div`
   position: absolute;
@@ -13,8 +13,7 @@ const PotSize = styled.div`
   text-align: center;
 `;
 
-const TablePot = props =>
-  (<Fitter>
+const TablePot = props => (<Fitter>
     <PotSize>
       {props.size}
     </PotSize>

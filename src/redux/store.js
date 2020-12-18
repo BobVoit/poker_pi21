@@ -5,12 +5,14 @@ import thunkMiddleware from 'redux-thunk';
 import authReducer from './authReducer';
 import tablesReducer from './tablesReducer';
 import appReducer from './appReducer';
+import gameReducer from './gameReducer';
 
 let reducers = combineReducers({
     form: formReducer,
     auth: authReducer,
     tables: tablesReducer,
-    app: appReducer
+    app: appReducer,
+    game: gameReducer
 })
 
 
