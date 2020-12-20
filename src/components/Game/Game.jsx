@@ -6,7 +6,7 @@ import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
 import CardBackSide from '../../images/cards/Back.png';
 
-import Table from './Table/Table';
+// import Table from './Table/Table';
 import TablePoker from './TablePoker/TablePoker';
 
 class Game extends React.Component {

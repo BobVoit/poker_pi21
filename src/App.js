@@ -1,4 +1,4 @@
-import { BrowserRouter, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -11,9 +11,9 @@ import Profile from './components/Profile/Profile';
 import Tables from './components/Tables/Tables';
 import { initializeApp } from './redux/appReducer';
 import About from './components/About/About';
-import Game from './components/Game/Game';
+import Preloader from './components/common/Preloader/Preloader';
 
-
+const Game = React.lazy(() => import('./components/Game/Game'));
  
 
 class App extends React.Component  {
@@ -28,12 +28,14 @@ class App extends React.Component  {
         <div className="wrapper">
           {/* <div className="container"> */}
               <Header /> 
-              <Route path="/login" render={() => <Login />} />
-              <Route path="/checkin" render={() => <CheckIn />} />
+              <React.Suspense fallback={<Preloader />}>
+                <Route path="/login" render={() => <Login />} />
+                <Route path="/checkin" render={() => <CheckIn />} />
+                <Route path="/game" render={() => <Game />} />
+              </React.Suspense>
               <Route path="/profile" render={() => <Profile />} />
               <Route path="/tables" render={() => <Tables />} />
               <Route path="/about" render={() => <About />} />
-              <Route path="/game" render={() => <Game />} />
           {/* </div> */}
         </div>
       </BrowserRouter>

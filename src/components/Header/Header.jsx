@@ -17,7 +17,7 @@ class Header extends React.Component {
         return (
             <header className="header-container">
                 <HeaderInfo 
-                    login={this.props.login}
+                    nickname={this.props.nickname}
                     isAuth={this.props.isAuth}
                     logout={this.logout}
                 />
@@ -29,14 +29,14 @@ class Header extends React.Component {
 
 Header.propTypes = {
     isAuth: PropTypes.bool,
-    login: PropTypes.string,
+    nickname: PropTypes.string,
     token: PropTypes.string
 }
 
 
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
-    login: state.auth.login,
+    nickname: state.auth.nickname,
     token: state.auth.token
 })
 

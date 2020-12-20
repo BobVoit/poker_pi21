@@ -10,7 +10,7 @@ const HeaderInfo = (props) => {
     <div className="header-container__info">
       <div className="header-container__name">
         {props.isAuth ? (
-          <Link component={NavLink} to="/profile" >{props.login}</Link>
+          <Link component={NavLink} to="/profile" >{props.nickname}</Link>
         ) : null}
       </div>
       {!props.isAuth ? (

@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 
-import { authAPI } from '../api/api';
+import { authAPI, usersAPI } from '../api/api';
 import { errorsOfAPI } from '../another/errors';
 
 const SET_TOKEN = 'SET_TOKEN';
@@ -8,8 +8,10 @@ const SET_USER_DATA = 'SET_USER_DATA';
 const SET_REGISTRATION = 'SET_REGISTRATION';
 const SET_CLEAR_ERROR = 'SET_CLEAR_ERROR_AUTH';
 const SET_ERROR = "SET_ERROR_AUTH";
+const SET_STATS = "SET_STATS";
 
 let initialState = {
+    id: null,
     login: null,    
     password: null,
     nickname: null,
@@ -18,6 +20,13 @@ let initialState = {
     isAuth: false,
     error: null,
     isRegistration: false,
+    stats: {
+        win: 0,
+        loss: 0,
+        biggest_win: 0,
+        biggest_loss: 0,
+        date_registration: ""
+    }
 }
 
 
@@ -36,6 +45,7 @@ const authReducer = (state = initialState, action) => {
                 login: action.login,
                 password: action.password,
                 nickname: action.nickname,
+                id: Number(action.id),
                 money: (action.isAuth ? Number(action.money) : null),
                 token: action.token,
                 isAuth: action.isAuth,
@@ -59,6 +69,16 @@ const authReducer = (state = initialState, action) => {
                 error: ""
             }
         }
+        case SET_STATS: {
+            return {
+                ...state,
+                win: Number(action.win),
+                loss: Number(action.loss),
+                biggest_win: Number(action.biggest_win),
+                biggest_loss: Number(action.biggest_loss),
+                date_registration: action.date_registration
+            }
+        }
         default: 
             return state;
     }
@@ -69,20 +89,17 @@ export const setToken = (token) => ({ type: SET_TOKEN, token })
 
 export const setRegistration = (isRegistration) => ({ type: SET_REGISTRATION, isRegistration }); 
 
-export const setUserData = (login, password, nickname, money, token, bank, isAuth) => ({
-    type: SET_USER_DATA,
-    login,
-    password,
-    nickname,
-    money,
-    token,
-    isAuth, 
-    bank
+export const setUserData = (login, password, nickname, id, money, token, bank, isAuth) => ({
+    type: SET_USER_DATA, id, login, password, nickname, money, token, isAuth, bank
 })
 
 export const setAuthError = (error) => ({type: SET_ERROR, error});
 
 export const setAuthClearError = () => ({ type: SET_CLEAR_ERROR});
+
+export const setStats = (win, loss, biggest_win, biggest_loss, date_registration) => ({
+    type: SET_STATS, win, loss, biggest_win, biggest_loss, date_registration
+});
 
 
 export const checkIn = (login, password, nickname) => async (dispatch) => {
@@ -99,8 +116,17 @@ export const login = (login, password) => async (dispatch) => {
     if (response.data.result === 'ok') {
         dispatch(getUserByToken(response.data.data));
         Cookies.set('token', response.data.data, { expires: 365 });
-        console.log(errorsOfAPI[0]);
     } else if (response.data.result === "error") {
+        dispatch(setAuthError(response.data.data));
+    }
+}
+
+export const logout = (token) => async (dispatch) => {
+    let response = await authAPI.logout(token);
+    if (response.data.result === "ok" && response.data.data) {
+        dispatch(setUserData(null, null, null, null, null, null, false))
+        Cookies.remove('token');
+    } else if (response.result === "error") {
         dispatch(setAuthError(response.data.data));
     }
 }
@@ -109,21 +135,21 @@ export const getUserByToken = (token) => async (dispatch) => {
     let response = await authAPI.getUserByToken(token);
     let data = response.data.data;
     if (response.data.result === 'ok') {
-        dispatch(setUserData(data.login, data.password, data.nickname, data.money, data.token, data.bank, true));
-        console.log(response);
+        dispatch(getStats(data.id));
+        dispatch(setUserData(data.login, data.password, data.nickname, data.id, data.money, data.token, data.bank, true));
     } else if (response.result === "error") {
         dispatch(setAuthError(response.data.data));
     }
 }
 
-export const logout = (token) => async (dispatch) => {
-    let response = await authAPI.logout(token);
-    if (response.data.result === "ok" && response.data.data) {
-        dispatch(setUserData(null, null, null, null, null, false))
-        Cookies.remove('token');
-    } else if (response.result === "error") {
-        dispatch(setAuthError(response.data.data));
+export const getStats = (id) => async (dispatch) => {
+    let response = await usersAPI.getStatsById(id);
+    console.log(response);
+    if (response.data.result === 'ok') {
+        let data = response.data.data;
+        dispatch(setStats(data.win, data.loss, data.biggest_win, data.biggest_loss, data.date_registration));
     }
 }
+
 
 export default authReducer;

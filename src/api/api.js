@@ -24,11 +24,17 @@ export const authAPI = {
         return axios({
             method: 'POST',
             url: 'http://poker/api/index.php?',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
             params: {
                 method: 'login',
                 login, password
-            }
-        }, {withCredentials: true, credentials: "same-origin" })
+            },
+            withCredentials: true,
+            credentials: "same-origin"
+        })
     },
     logout(token) {
         return axios({
@@ -100,21 +106,28 @@ export const tablesAPI = {
             }
         }, {withCredentials: true});
     },
-    // getTableById(id) {
-    //     return axios({
-    //         method: 'GET',
-    //         url: 'http://localhost/api/index.php?method=gettablebyid',
-    //         params: {
-    //             id
-    //         }
-    //     }, {withCredentials: true});
-    // },
     getTableById(id) {
         return axios.get('http://poker/api/index.php?method=gettablebyid&id='+id);
     },
     getQuantPlayersOnTable(id) {
         return axios.get('http://localhost/api/index.php?method=getquantplayersontable&id=' + id);
     },
+}
 
+
+export const usersAPI = {
+    getStatsById(id) {
+        return axios({
+            method: 'GET',
+            url: 'http://poker/api/index.php?method=getstatsbyid&id=' + id,
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            responseType: 'stream',
+            withCredentials: true,
+            credentials: "same-origin"
+        });
+    }
 }
 
