@@ -6,10 +6,12 @@ const SET_TABLES = 'SET_TABLES';
 const IS_FETCHING = 'IS_FETCHING';
 const SET_ERROR = 'SET_ERROR_TABLE';
 const SET_CLEAR_ERROR = 'SET_CLEAR_ERROR_TABLE';
+const SET_INFO_ABOUT_TABLE = 'SET_INFO_ABOUT_TABLE';
 
 let initialState = {
     tables: [],
     isFetching: false,
+    currentTable: {},
     error: ""
 }
 
@@ -33,6 +35,17 @@ const tablesReducer = (state = initialState, action) => {
                 error: errorsOfAPI.find(elem => elem.value === action.error)
             }
         }
+        case SET_INFO_ABOUT_TABLE: {
+            return {
+                ...state,
+                currentTable: {
+                    id: Number(action.table.id),
+                    name: action.table.name,
+                    quantity_players: Number(action.table.quantity_players),
+                    active_players_id: action.table.active_players_id.split(' ')
+                }
+            }
+        }
         default: 
             return state;
     }
@@ -46,6 +59,8 @@ export const setIsFetching = (isFetching) => ({type: IS_FETCHING, isFetching});
 export const setErrorTable = (error) => ({type: SET_ERROR, error});
 
 export const setClearErrorTable = () => ({type: SET_CLEAR_ERROR});
+
+export const setInfoAboutTable = (table) => ({ type: SET_INFO_ABOUT_TABLE, table });
 
 
 export const createTable = (token, name, quantPlayer = null, rates = null, password = null) => async (dispatch) => {
@@ -68,8 +83,11 @@ export const getАllTables = () => async (dispatch) => {
 }
 
 export const getTableById = (id) => async (dispatch) => {
-    let response = await tablesAPI.getTableById(id);
-    console.log(response);
-} 
+    let response = await tablesAPI.getTableById(id);  
+    let data = response.data.data;
+    if (response.data.result === 'ok') {
+      dispatch(setInfoAboutTable(data));
+    }
+  } 
 
 export default tablesReducer;

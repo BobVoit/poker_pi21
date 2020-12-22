@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
+import { connect } from 'react-redux';
 
 import TableCards from './TableCards/TableCards';
 import TablePot from './TablePot/TablePot';
 import SeatsLayout from './SeatsLayout/SeatsLayout';
 import ActionsGroup from './ActionGroup/ActionGroup';
 import allocatePlayers from './allocatePlayers';
-import { connect } from 'react-redux';
+
 
 let players = [{
     you: true,
@@ -18,14 +19,7 @@ let players = [{
     dealer: true, // true
     status: 'active', // fold, all-in, active, call, check, raise, bet
     cards: [
-      {
-        suit: 'c',
-        rank: 'K',
-      },
-      {
-        suit: 'd',
-        rank: '8',
-      },
+      
     ],
   },
   {
@@ -86,6 +80,7 @@ let players = [{
 
 const pot = 1000;
 const seatsCount = 7;
+
 const theme = {
     sizeTable: {
         width: '55vw',
@@ -122,12 +117,13 @@ const MountedActionsGroup = styled(ActionsGroup)`
 
 
 class TablePoker extends React.Component {
+
     render() {
-        console.log(this.props);
         return (
+          <div className="game-wrapper">
             <ThemeProvider theme={theme}>
                 <TablePokerWrapper>
-                    <TableCards />
+                    <TableCards cards={this.props.cards} />
                     <TablePot size={this.props.pot} />
                     <SeatsLayout count={this.props.seatsCount} >
                         {allocatePlayers(this.props.players)}
@@ -135,6 +131,7 @@ class TablePoker extends React.Component {
                     <MountedActionsGroup />
                 </TablePokerWrapper>
             </ThemeProvider>
+          </div>
         )
     }
 }
@@ -145,6 +142,7 @@ const mapStateToProps = state => ({
     // availableActions: state.table.actions_available,
     // restrictions: state.table.restrictions,
     // tableCards: state.table.table_cards,
+    cards: state.game.cards[0],
     pot: pot,
     players: players
 });

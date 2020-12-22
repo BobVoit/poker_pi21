@@ -1,13 +1,6 @@
 import * as axios from "axios";
 
-// const instance = axios.create({
-//     withCredentials: true,
-//     baseURL: 'http://poker/api/index.php?',
-//     headers: {
-//         "Access-Control-Allow-Origin": "*",
-//         "Access-Control-Allow-Headers" : "*",
-//     }
-// })
+
 
 export const authAPI = {
     checkIn(login, password, nickname) {
@@ -18,22 +11,22 @@ export const authAPI = {
                 method: 'registration',
                 login, password, nickname
             }
-        }, {withCredentials: true})
+        })
     },
     login(login, password) {
         return axios({
             method: 'POST',
             url: 'http://poker/api/index.php?',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
+            // headers: {
+            //     Accept: 'application/json',
+            //     'Content-Type': 'application/json',
+            // },
             params: {
                 method: 'login',
                 login, password
             },
-            withCredentials: true,
-            credentials: "same-origin"
+            // withCredentials: true,
+            // credentials: "include"
         })
     },
     logout(token) {
@@ -104,30 +97,71 @@ export const tablesAPI = {
             params: {
                 method: 'getalltables'
             }
-        }, {withCredentials: true});
+        });
+    },
+    getQuantPlayersOnTable(id) {
+        return axios.get('http://poker/api/index.php?method=getquantplayersontable&id=' + id);
     },
     getTableById(id) {
         return axios.get('http://poker/api/index.php?method=gettablebyid&id='+id);
     },
-    getQuantPlayersOnTable(id) {
-        return axios.get('http://localhost/api/index.php?method=getquantplayersontable&id=' + id);
-    },
 }
-
 
 export const usersAPI = {
     getStatsById(id) {
         return axios({
             method: 'GET',
             url: 'http://poker/api/index.php?method=getstatsbyid&id=' + id,
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
+            // headers: {
+            //     Accept: 'application/json',
+            //     'Content-Type': 'application/json',
+            // },
+            responseType: 'stream',
+            // withCredentials: true,
+            // credentials: "same-origin"
+        });
+    },
+}
+
+export const gameAPI = {
+    transferToBank(token, money) {
+        return axios({
+            method: "POST",
+            url: "http://poker/api/index.php",
+            params: {
+                method: "transfertobank",
+                token, money
+            }
+        })
+    },
+    transferToMoney(token, money) {
+        return axios({
+            method: "POST",
+            url: "http://poker/api/index.php",
+            params: {
+                method: "transfertomoney",
+                token, money
+            }
+        })
+    },
+    startGame(tableId) {
+        return axios({
+            method: "POST",
+            url: "http://poker/api/index.php",
+            params: {
+                method: "startgame",
+                idtable: tableId
+            }
+        })
+    },
+    getGame(id) {
+        return axios({
+            method: "GET",
+            url: "http://poker/api/index.php?method=getgame&id" + id,
             responseType: 'stream',
             withCredentials: true,
             credentials: "same-origin"
-        });
-    }
-}
+        })
+    },
 
+}

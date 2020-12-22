@@ -2,67 +2,56 @@ import B2 from '../images/cards/2B.png';
 import C2 from '../images/cards/2C.png';
 import K2 from '../images/cards/2K.png';
 import P2 from '../images/cards/2P.png';
-
 import B3 from '../images/cards/3B.png';
 import C3 from '../images/cards/3C.png';
 import K3 from '../images/cards/3K.png';
 import P3 from '../images/cards/3P.png';
-
 import B4 from '../images/cards/4B.png';
 import C4 from '../images/cards/4C.png';
 import K4 from '../images/cards/4K.png';
 import P4 from '../images/cards/4P.png';
-
 import B5 from '../images/cards/5B.png';
 import C5 from '../images/cards/5C.png';
 import K5 from '../images/cards/5K.png';
 import P5 from '../images/cards/5P.png';
-
 import B6 from '../images/cards/6B.png';
 import C6 from '../images/cards/6C.png';
 import K6 from '../images/cards/6K.png';
 import P6 from '../images/cards/6P.png';
-
 import B7 from '../images/cards/7B.png';
 import C7 from '../images/cards/7C.png';
 import K7 from '../images/cards/7K.png';
 import P7 from '../images/cards/7P.png';
-
 import B8 from '../images/cards/8B.png';
 import C8 from '../images/cards/8C.png';
 import K8 from '../images/cards/8K.png';
 import P8 from '../images/cards/8P.png';
-
 import B9 from '../images/cards/9B.png';
 import C9 from '../images/cards/9C.png';
 import K9 from '../images/cards/9K.png';
 import P9 from '../images/cards/9P.png';
-
 import B10 from '../images/cards/10B.png';
 import C10 from '../images/cards/10C.png';
 import K10 from '../images/cards/10K.png';
 import P10 from '../images/cards/10P.png';
-
 import BJ from '../images/cards/JB.png';
 import CJ from '../images/cards/JC.png';
 import KJ from '../images/cards/JK.png';
 import PJ from '../images/cards/JP.png';
-
 import BQ from '../images/cards/QB.png';
 import CQ from '../images/cards/QC.png';
 import KQ from '../images/cards/QK.png';
 import PQ from '../images/cards/QP.png';
-
 import BK from '../images/cards/KB.png';
 import CK from '../images/cards/KC.png';
 import KK from '../images/cards/KK.png';
 import PK from '../images/cards/KP.png';
-
 import BA from '../images/cards/AB.png';
 import CA from '../images/cards/AC.png';
 import KA from '../images/cards/AK.png';
 import PA from '../images/cards/AP.png';
 
+import { tablesAPI, gameAPI } from '../api/api';
 
 
 let initialState = {
@@ -131,17 +120,20 @@ let initialState = {
     {rank: 14, suit: 'C', img: CA},
     {rank: 14, suit: 'K', img: KA},
     {rank: 14, suit: 'P', img: PA},
-  ],  
+  ],
+  activePlayers: [],
 };
 
 
+
+
 const gameReducer = (state = initialState, action) => {
-    switch (action.type) {
-        
+    switch (action.type) { 
         default: 
             return state;
     }
 }
+
 
 
 export default gameReducer;

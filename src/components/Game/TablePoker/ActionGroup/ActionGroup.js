@@ -9,8 +9,15 @@ const InlineBetResizer = styled(BetResizer)`
   width: 20vw;
 `;
 
+const ActionGroupWrapper = styled.div`
+  width: 15vw;
+  position: absolute;
+  top: 23vw;
+  left: 60vw;
+  `;
+
 const ActionsGroup = props =>
-  (<div className={props.className}>
+  (<ActionGroupWrapper>
     {/* {props.available.fold && <ActionButton> Fold </ActionButton>}
     {props.available.check && <ActionButton> Check </ActionButton>}
     {props.available.call && <ActionButton> Call </ActionButton>}
@@ -26,7 +33,7 @@ const ActionsGroup = props =>
       <ActionButton> Raise </ActionButton>
       <InlineBetResizer {...props.restrictions} />
     </span>
-  </div>);
+  </ActionGroupWrapper>);
 
 ActionsGroup.propTypes = {
   className: PropTypes.string,

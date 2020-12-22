@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-// import PlayerSeatPropTypes from '../../../models/player-seat';
-
 import userAvatar from '../../../../images/nullAvatar.jpg';
 
+
+
 const PlayerSeatWrapper = styled.div`
-  width: 15vw;
-  height: 15vw;
+  width: 7vw;
+  height: 7vw;
 
   display: flex;
   flex-direction: column;
@@ -36,8 +36,28 @@ const PlayerPanel = styled.div`
   align-items: center;
 `;
 
-function PlayerSeat(props) {
-  console.log(props);
+const Cards = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const CardOfPlayer = styled.img`
+  width: 10%;
+  height: 20%;
+`;
+
+const PlayerSeat = (props) => {
+  let playersCards;
+  if (!props.isCards) {
+    playersCards = null;
+  } else if (props.isCards && props.you) {
+    playersCards = props.cards.map(card => <CardOfPlayer src={card.img} />)
+  } else {
+    playersCards = props.cards;
+  }
+
+
   return (
     <PlayerSeatWrapper className={props.className}>
       <PlayerAvatar />
@@ -49,6 +69,9 @@ function PlayerSeat(props) {
           {props.chips}
         </span>
       </PlayerPanel>
+      <Cards>
+        {playersCards}
+      </Cards>
     </PlayerSeatWrapper>
   );
 }

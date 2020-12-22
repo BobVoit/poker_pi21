@@ -1,28 +1,28 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+// import React from 'react';
+// import { connect } from 'react-redux';
+// import { compose } from 'redux';
 
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+// import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
-import CardBackSide from '../../images/cards/Back.png';
+// import CardBackSide from '../../images/cards/Back.png';
 
-// import Table from './Table/Table';
-import TablePoker from './TablePoker/TablePoker';
+// // import Table from './Table/Table';
+// import TablePoker from './TablePoker/TablePoker';
 
-class Game extends React.Component {
+// class Game extends React.Component {
 
-    render() {
-        return (
-            <div className="game-wrapper">
-                <TablePoker />
-            </div>
-        )
-    }
-}
+//     render() {
+//         return (
+//             <div className="game-wrapper">
+//                 <TablePoker />
+//             </div>
+//         )
+//     }
+// }
 
-const mapStateToProps = (state) => ({});
+// const mapStateToProps = (state) => ({});
 
-export default compose(
-    connect(mapStateToProps, null),
-    withAuthRedirect
-)(Game);
+// export default compose(
+//     connect(mapStateToProps, null),
+//     withAuthRedirect
+// )(Game);

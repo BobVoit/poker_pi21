@@ -7,10 +7,10 @@ import Fitter from '../Another/Fitter';
 
 const CardsPlaceholder = styled.div`
   width: 60%;
+  height: 40%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
   border: 5px dashed hsla(0, 100%, 100%, 0.5);
   border-radius: 10px;
 `;
@@ -26,13 +26,14 @@ const TableCard = styled.img`
 `;
 
 const TableCards = (props) => {
-    // const cardsTemplate = props.data.map(card =>
-    //   <TableCard className="sharedCard" suit={card.suit} rank={card.rank} />,
+    // const cardsTemplate = props.cards.map(card =>
+    //   <TableCard className="sharedCard" src={card.img} />,
     // );
     return (
       <Fitter flexcenter>
         <CardsPlaceholder>
           {/* {cardsTemplate} */}
+          <TableCard className="sharedCard" src={props.cards.img} />
         </CardsPlaceholder>
       </Fitter>
     );

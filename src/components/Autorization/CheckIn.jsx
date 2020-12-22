@@ -13,7 +13,6 @@ const CheckIn = (props) => {
     }
 
     if (props.isRegistration) {
-        console.log('5656');
         props.setRegistration(false);
         return <Redirect to="/login" />
     }

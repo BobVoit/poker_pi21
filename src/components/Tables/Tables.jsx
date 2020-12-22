@@ -80,6 +80,7 @@ class Tables extends React.Component {
                             {this.props.tables.map(table => 
                             <TableItem 
                                 openGame={this.openGame}
+                                getTableById={this.props.getTableById}
                                 key={table.id}
                                 token={this.props.token}
                                 onClick={this.props.connectToTable} 

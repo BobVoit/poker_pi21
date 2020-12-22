@@ -14,6 +14,7 @@ import About from './components/About/About';
 import Preloader from './components/common/Preloader/Preloader';
 
 const Game = React.lazy(() => import('./components/Game/Game'));
+const TablePOker = React.lazy(() => import('./components/Game/TablePoker/TablePoker'));
  
 
 class App extends React.Component  {
@@ -31,7 +32,7 @@ class App extends React.Component  {
               <React.Suspense fallback={<Preloader />}>
                 <Route path="/login" render={() => <Login />} />
                 <Route path="/checkin" render={() => <CheckIn />} />
-                <Route path="/game" render={() => <Game />} />
+                <Route path="/game" render={() => <TablePOker />} />
               </React.Suspense>
               <Route path="/profile" render={() => <Profile />} />
               <Route path="/tables" render={() => <Tables />} />

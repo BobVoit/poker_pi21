@@ -5,7 +5,7 @@ import Fitter from '../Another/Fitter';
 
 const PotSize = styled.div`
   position: absolute;
-  bottom: 25%;
+  bottom: 20%;
   width: 100%;
   font-size: 150%;
   font-weight: 800;
