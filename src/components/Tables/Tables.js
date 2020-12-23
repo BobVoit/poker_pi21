@@ -24,6 +24,27 @@ class Tables extends React.Component {
         this.props.getАllTables();
     }
 
+    componentDidUpdate(prevProps) {
+        if (!this.equalArraysOfObjact(this.props.tables, prevProps.tables) && this.props.tables.length !== 0) {
+            console.log(this.equalArraysOfObjact(this.props.tables, prevProps.tables))
+            this.props.getАllTables();
+        }
+    }
+
+    equalArraysOfObjact = (arr1, arr2) => {
+        if (arr1.length === arr2.length) {
+            for (let i = 0; i < arr1.length; i++) {
+                if (arr1[i].id !== arr2[i].id) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return true;
+    }
+
+
+
     createTable = () => {
         this.props.createTable(this.props.token, "Тест", 3, 1000, 1232423);
     }
@@ -39,10 +60,12 @@ class Tables extends React.Component {
     }
 
     render() {  
-        if (this.props.isFetching) return <Preloader />;
-        if (this.state.isOpenGame) return <Redirect to="/game" />
+        // if (this.props.isFetching) return <Preloader />;
+        // if (this.state.isOpenGame) return <Redirect to="/game" />
         return (
             <div className="tables-wrapper">
+                { this.props.isFetching ? <Preloader /> : null }
+                { this.state.isOpenGame ? <Redirect to="/game" /> : null }
                 { this.state.isCreateTable && 
                     <CreateTable 
                         createTable={this.props.createTable} 
@@ -64,17 +87,12 @@ class Tables extends React.Component {
                             </div>
 
                             <div className="tables-container_header_players tables-container_header_items">
-                                Игроков
+                                Игроки
                             </div>
                             
                             <div className="tables-container_header_bets tables-container_header_items">
                                 Ставка
                             </div>
-
-                            <div className="tables-container_header_password tables-container_header_items">
-                                Тип стола
-                            </div>
-
                         </div>
                         <div className="tables-container_main">
                             {this.props.tables.map(table => 

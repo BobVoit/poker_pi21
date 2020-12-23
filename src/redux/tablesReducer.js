@@ -7,6 +7,7 @@ const IS_FETCHING = 'IS_FETCHING';
 const SET_ERROR = 'SET_ERROR_TABLE';
 const SET_CLEAR_ERROR = 'SET_CLEAR_ERROR_TABLE';
 const SET_INFO_ABOUT_TABLE = 'SET_INFO_ABOUT_TABLE';
+const SET_COUNT_ACTIVE_PLAYERS = 'SET_COUNT_ACTIVE_PLAYERS';
 
 let initialState = {
     tables: [],
@@ -46,6 +47,12 @@ const tablesReducer = (state = initialState, action) => {
                 }
             }
         }
+        // case SET_COUNT_ACTIVE_PLAYERS: {
+        //     return {
+        //         ...state,
+        //         tables: state.tables.map(table => table.countActivePlayers = )
+        //     }
+        // }
         default: 
             return state;
     }
@@ -61,6 +68,8 @@ export const setErrorTable = (error) => ({type: SET_ERROR, error});
 export const setClearErrorTable = () => ({type: SET_CLEAR_ERROR});
 
 export const setInfoAboutTable = (table) => ({ type: SET_INFO_ABOUT_TABLE, table });
+
+export const setCountActivePlayers = (countPlayers) => ({ type: SET_COUNT_ACTIVE_PLAYERS, countPlayers});
 
 
 export const createTable = (token, name, quantPlayer = null, rates = null, password = null) => async (dispatch) => {
@@ -78,7 +87,9 @@ export const connectToTable = (token, id) => async (dispatch) => {
 export const getАllTables = () => async (dispatch) => {
     dispatch(setIsFetching(true));
     let response = await tablesAPI.getАllTables();
-    dispatch(setTables(response.data.data));
+    console.log(response.data.data)
+    let data = response.data.data.map(elem  => ({...elem, active_players: elem.active_players_id.trim().split(" ").length }));
+    dispatch(setTables(data));
     dispatch(setIsFetching(false));
 }
 
@@ -88,6 +99,14 @@ export const getTableById = (id) => async (dispatch) => {
     if (response.data.result === 'ok') {
       dispatch(setInfoAboutTable(data));
     }
-  } 
+}
+
+// export const getQuantPlayersOnTable = (id) => async (dispatch) => {
+//     let response = await tablesAPI.getQuantPlayersOnTable(id);
+//     let data = response.data;
+//     if (data.result === 'ok') {
+        
+//     }
+// }
 
 export default tablesReducer;

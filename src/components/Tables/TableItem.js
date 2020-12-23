@@ -19,14 +19,14 @@ const TableItem = (props) => {
                 {props.table.name}
             </div>
             <div className="tables-container_create_players tables-container_create_item">
-                {props.table.quantity_players}
+                {props.table.active_players}/{props.table.quantity_players}
             </div>
             <div className="tables-container_create_bets tables-container_create_item">
                 {props.table.rates}
             </div>
-            <div className="tables-container_create_password tables-container_create_item">
+            {/* <div className="tables-container_create_password tables-container_create_item">
                 Закрытый
-            </div>
+            </div> */}
         </div>
     )
 }

@@ -22,7 +22,7 @@ function cssIndex(collection) {
 function changeBasis(layout) {
   return layout.map((coords, ind) => ({
     ind: ind + 1,
-    x: 70 * (1 - coords.x),
+    x: 69 * (1 - coords.x),
     y: 70 * (1 + coords.y),
   }));
 }

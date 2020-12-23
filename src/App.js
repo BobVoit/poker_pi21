@@ -13,7 +13,6 @@ import { initializeApp } from './redux/appReducer';
 import About from './components/About/About';
 import Preloader from './components/common/Preloader/Preloader';
 
-const Game = React.lazy(() => import('./components/Game/Game'));
 const TablePOker = React.lazy(() => import('./components/Game/TablePoker/TablePoker'));
  
 
