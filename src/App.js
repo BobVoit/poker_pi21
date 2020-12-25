@@ -13,7 +13,7 @@ import { initializeApp } from './redux/appReducer';
 import About from './components/About/About';
 import Preloader from './components/common/Preloader/Preloader';
 
-const TablePOker = React.lazy(() => import('./components/Game/TablePoker/TablePoker'));
+const Game = React.lazy(() => import('./components/Game/Game'));
  
 
 class App extends React.Component  {
@@ -31,7 +31,7 @@ class App extends React.Component  {
               <React.Suspense fallback={<Preloader />}>
                 <Route path="/login" render={() => <Login />} />
                 <Route path="/checkin" render={() => <CheckIn />} />
-                <Route path="/game" render={() => <TablePOker />} />
+                <Route path="/game" render={() => <Game />} />
               </React.Suspense>
               <Route path="/profile" render={() => <Profile />} />
               <Route path="/tables" render={() => <Tables />} />

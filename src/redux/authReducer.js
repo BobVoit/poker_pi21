@@ -2,6 +2,7 @@ import Cookies from 'js-cookie';
 
 import { authAPI, usersAPI } from '../api/api';
 import { errorsOfAPI } from '../another/errors';
+import { setPlayer } from './gameReducer';
 
 const SET_TOKEN = 'SET_TOKEN';
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -140,6 +141,11 @@ export const getUserByToken = (token) => async (dispatch) => {
     } else if (response.result === "error") {
         dispatch(setAuthError(response.data.data));
     }
+}
+
+export const getUserById = (id) => async (dispatch) => {
+    let response = await usersAPI.getUserById(id);
+    dispatch(setPlayer(response.data.data));
 }
 
 export const getStats = (id) => async (dispatch) => {

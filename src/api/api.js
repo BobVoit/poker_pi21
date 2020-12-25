@@ -17,16 +17,10 @@ export const authAPI = {
         return axios({
             method: 'POST',
             url: 'http://poker/api/index.php?',
-            // headers: {
-            //     Accept: 'application/json',
-            //     'Content-Type': 'application/json',
-            // },
             params: {
                 method: 'login',
                 login, password
             },
-            // withCredentials: true,
-            // credentials: "include"
         })
     },
     logout(token) {
@@ -49,13 +43,13 @@ export const tablesAPI = {
     // токен игрока
     // id стола
     // rates - ставки
-    createTable(token, name, quantPlayer = '', rates = '', password = '') {
+    createTable(token, name, quantplayers, rates, password) {
         return axios({
             method: 'POST',
             url: 'http://poker/api/index.php?',
             params: {
                 method: 'createtable',
-                token, name, quantPlayer, rates, password
+                token, name, quantplayers, rates, password
             }
         }, {withCredentials: true})
     },
@@ -66,27 +60,6 @@ export const tablesAPI = {
             params: {
                 method: 'deletetablebyid',
                 id
-            }
-        })
-    },
-    connectToTable(token, id) {
-    // id стола
-        return axios({
-            method: 'POST',
-            url: 'http://poker/api/index.php?',
-            params: {
-                method: 'connecttotable',
-                token, id
-            }
-        })
-    },
-    disconnectFromTable(token, id) {
-        return axios({
-            method: 'POST',
-            url: 'http://poker/api/index.php?',
-            params: {
-                method: 'disconnectfromtable',
-                token, id
             }
         })
     },
@@ -112,15 +85,16 @@ export const usersAPI = {
         return axios({
             method: 'GET',
             url: 'http://poker/api/index.php?method=getstatsbyid&id=' + id,
-            // headers: {
-            //     Accept: 'application/json',
-            //     'Content-Type': 'application/json',
-            // },
             responseType: 'stream',
-            // withCredentials: true,
-            // credentials: "same-origin"
         });
     },
+    getUserById(id) {
+        return axios({
+            method: 'GET',
+            url: 'http://poker/api/index.php?method=getuserbyid&id=' + id,
+            responseType: 'stream',
+        })
+    }
 }
 
 export const gameAPI = {
@@ -163,5 +137,24 @@ export const gameAPI = {
             credentials: "same-origin"
         })
     },
-
+    connectToTable(token, id) {
+        return axios({
+            method: 'POST',
+            url: 'http://poker/api/index.php?',
+            params: {
+                method: 'connecttotable',
+                token, id
+            }
+        })
+    },
+    disconnectFromTable(token, id) {
+        return axios({
+            method: 'POST',
+            url: 'http://poker/api/index.php?',
+            params: {
+                method: 'disconnectfromtable',
+                token, id
+            }
+        })
+    },
 }

@@ -13,7 +13,9 @@ class CreateTable extends React.Component {
 
     onSubmit = (formData) => {
         const { name, countPlayers, rates, password } = formData;
+        console.log(countPlayers);
         this.props.createTable(this.props.token, name, countPlayers, rates, password);
+        this.props.openGame();
     }
 
     render() {

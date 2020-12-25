@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import userAvatar from '../../../../images/nullAvatar.jpg';
+import userAvatar from '../../../images/nullAvatar.jpg';
 
 
 

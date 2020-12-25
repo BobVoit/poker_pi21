@@ -2,12 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import { connect } from 'react-redux';
+import { Button } from '@material-ui/core';
 
 import TableCards from './TableCards/TableCards';
 import TablePot from './TablePot/TablePot';
 import SeatsLayout from './SeatsLayout/SeatsLayout';
 import ActionsGroup from './ActionGroup/ActionGroup';
 import allocatePlayers from './allocatePlayers';
+
+import { getTableById } from '../../redux/tablesReducer';
+import { disconnectFromTable } from '../../redux/gameReducer';
+import { Redirect } from 'react-router-dom';
 
 
 let players = [{
@@ -78,8 +83,6 @@ let players = [{
   },
 ];
 
-const pot = 1000;
-const seatsCount = 7;
 
 const theme = {
     sizeTable: {
@@ -108,44 +111,87 @@ const TablePokerWrapper = styled.div`
     }
 `;
 
-
 const MountedActionsGroup = styled(ActionsGroup)`
   position: absolute;
   right: 0;
   bottom: -50%;
 `;
 
+const ButtonBackInTables = styled(Button)`
+    position: absolute;
+    bottom: 130%;
+    right: 120%;
+`;
+
+
 
 class TablePoker extends React.Component {
+  state = {
+    inGame: true,
+  }
 
-    render() {
-        return (
-          <div className="game-wrapper">
-            <ThemeProvider theme={theme}>
-                <TablePokerWrapper>
-                    <TableCards cards={this.props.cards} />
-                    <TablePot size={this.props.pot} />
-                    <SeatsLayout count={this.props.seatsCount} >
-                        {allocatePlayers(this.props.players)}
-                    </SeatsLayout>
-                    <MountedActionsGroup />
-                </TablePokerWrapper>
-            </ThemeProvider>
-          </div>
-        )
+
+  disconnectGame = () => {
+    this.setState({inGame: false});
+  }
+
+  disconnectFromTable = () => {
+    this.props.disconnectFromTable(
+      this.props.token,
+      this.props.currentTable.id
+    );
+    this.disconnectGame();
+  };
+
+  equalArraysOfObjact = (arr1, arr2) => {
+    if (arr1.length === arr2.length) {
+        for (let i = 0; i < arr1.length; i++) {
+            if (arr1[i].id !== arr2[i].id) {
+                return false;
+            }
+        }
+        return true;
     }
+    return false;
+  }
+
+  render() {
+    return (
+      <div className="game-wrapper">
+        { !this.state.inGame ? <Redirect to="/tables" /> : 
+        <ThemeProvider theme={theme}>
+          <TablePokerWrapper>
+            <ButtonBackInTables
+              onClick={this.disconnectFromTable}
+              variant="contained"
+              size="medium"
+            >
+              Выйти из игры
+            </ButtonBackInTables>
+            <TableCards cards={this.props.cards} />
+            <TablePot size={this.props.pot} />
+            <SeatsLayout count={this.props.seatsCount}>
+              {allocatePlayers(this.props.players)}
+            </SeatsLayout>
+            <MountedActionsGroup />
+          </TablePokerWrapper>
+        </ThemeProvider>
+        }
+      </div>
+    );
+  }
 }
 
 
 const mapStateToProps = state => ({
-    seatsCount: seatsCount,
-    // availableActions: state.table.actions_available,
-    // restrictions: state.table.restrictions,
-    // tableCards: state.table.table_cards,
+    currentTable: state.tables.currentTable,
     cards: state.game.cards[0],
-    pot: pot,
+    token: state.auth.token,
     players: players
 });
   
-export default connect(mapStateToProps)(TablePoker);
+export default connect(mapStateToProps, {
+  disconnectFromTable,
+  getTableById
+})(TablePoker);
   

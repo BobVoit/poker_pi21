@@ -52,7 +52,9 @@ import KA from '../images/cards/AK.png';
 import PA from '../images/cards/AP.png';
 
 import { tablesAPI, gameAPI } from '../api/api';
+import { getTableById } from './tablesReducer';
 
+const SET_PLAYER = 'SET_PLAYER'; 
 
 let initialState = {
   cards: [
@@ -121,7 +123,7 @@ let initialState = {
     {rank: 14, suit: 'K', img: KA},
     {rank: 14, suit: 'P', img: PA},
   ],
-  activePlayers: [],
+  playersInGame: [],
 };
 
 
@@ -129,12 +131,32 @@ let initialState = {
 
 const gameReducer = (state = initialState, action) => {
     switch (action.type) { 
-        default: 
-            return state;
+      case SET_PLAYER: {
+        return {
+          ...state,
+          playersInGame: state.playersInGame.length !== 0 && state.playersInGame.find((elem) => elem.id === action.player.id) 
+          ? state.playersInGame 
+          : state.playersInGame.push(action.player)
+        }
+      }
+      default: 
+          return state;
     }
 }
 
 
+export const setPlayer = (player) => ({ type: SET_PLAYER, player });
+
+export const connectToTable = (token, id) => async (dispatch) => {
+  let response = await gameAPI.connectToTable(token, id);
+  if (response.data.result === 'ok' && response.data.data === true) {
+    dispatch(getTableById(id));
+  }
+}
+
+export const disconnectFromTable = (token, id) => async (dispatch) => {
+  let response = await gameAPI.disconnectFromTable(token, id);
+}
 
 export default gameReducer;
 

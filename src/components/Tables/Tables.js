@@ -6,30 +6,55 @@ import { Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 import TableItem from './TableItem';
-import { createTable, connectToTable, getАllTables, getTableById} from '../../redux/tablesReducer';
+import { createTable, getАllTables, getTableById, setTables } from '../../redux/tablesReducer';
+import { connectToTable } from '../../redux/gameReducer'; 
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import Preloader from '../common/Preloader/Preloader';
-import CreateTable from './CreateTable'
+import CreateTable from './CreateTable';
+import { tablesAPI } from '../../api/api';
 
 
 
 
 class Tables extends React.Component {
-    state = {
-        isCreateTable: false,
-        isOpenGame: false
+    constructor(props) {
+        super(props);
+        this.state = {
+            isCreateTable: false,
+            isOpenGame: false,
+            tables:[],
+        }
+    }
+
+    requestGetAllTables = () => {
+        this.props.getАllTables();
+        this.setState({tables: this.props.tables});
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.requstID);
     }
 
     componentDidMount() {
-        this.props.getАllTables();
+        this.requestGetAllTables();
+        this.requstID= setInterval(
+          () => this.requestGetAllTables(),
+          5000
+        );
     }
 
-    componentDidUpdate(prevProps) {
-        if (!this.equalArraysOfObjact(this.props.tables, prevProps.tables) && this.props.tables.length !== 0) {
-            console.log(this.equalArraysOfObjact(this.props.tables, prevProps.tables))
-            this.props.getАllTables();
-        }
-    }
+    // shouldComponentUpdate(nextProps) {
+    //     if (!this.equalArraysOfObjact(this.props.tables, this.state.tables)) {
+    //         this.setState({tables: this.props.tables})
+    //     }
+    // }
+
+    // componentDidUpdate(prevProps, prevState) {
+    //     this.props.getАllTables();
+    //     if (!this.equalArraysOfObjact(this.props.tables, this.prevProps.tables)) {
+
+    //     }
+    // }
 
     equalArraysOfObjact = (arr1, arr2) => {
         if (arr1.length === arr2.length) {
@@ -40,13 +65,7 @@ class Tables extends React.Component {
             }
             return true;
         }
-        return true;
-    }
-
-
-
-    createTable = () => {
-        this.props.createTable(this.props.token, "Тест", 3, 1000, 1232423);
+        return false;
     }
 
     openCreateTablePage = () => {
@@ -60,8 +79,7 @@ class Tables extends React.Component {
     }
 
     render() {  
-        // if (this.props.isFetching) return <Preloader />;
-        // if (this.state.isOpenGame) return <Redirect to="/game" />
+        console.log("render")
         return (
             <div className="tables-wrapper">
                 { this.props.isFetching ? <Preloader /> : null }
@@ -70,6 +88,7 @@ class Tables extends React.Component {
                     <CreateTable 
                         createTable={this.props.createTable} 
                         token={this.props.token}
+                        openGame={this.openGame}
                     />}
                 <div className="tables-container">
                     <div className="tables-container_but">
